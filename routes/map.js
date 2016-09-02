@@ -36,7 +36,7 @@ var getrandomid = function(){
 }
 /* GET users listing. */
 router.get('/:mapid/getmap',function(req,res,next){
-  Map.find({_id :mongoose.Types.ObjectId(req.params.mapid)},function(err,map){
+  Map.findById(mongoose.Types.ObjectId(req.params.mapid),function(err,map){
     if(err){
       console.log(err);
     }else{
@@ -47,11 +47,15 @@ router.get('/:mapid/getmap',function(req,res,next){
 router.get('/createnewmap',function(req,res,next){
   var map = new Map({
     _id : mongoose.Types.ObjectId(1),
-    conquered : [],
-    unconquered : []
+    locations : new Array()
   });
-  for(var i=0;i<100;i++){
-    map.unconquered.push(i);
+  for(var i=0;i<596;i++){
+    map.locations[i] = {
+      color : "#D3D3D3",
+      level : 1,
+      conquered : false,
+      conqueredBy : {}
+    }
   }
   map.save(function(err,map){
     if(err){

@@ -126,166 +126,177 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+
     <script type="text/javascript">
-    function loader(config) {
-        return function() {
-            // config.width & config.height
-            var radius = Math.min(800, 500) / 2;
-            var tau = 2 * Math.PI;
+    var loadmap = function(){
+      console.log(mapjson);
+      function loader(config) {
+        console.log();
+          return function() {
+              // config.width & config.height
+              var radius = Math.min(800, 500) / 2;
+              var tau = 2 * Math.PI;
 
-            var arc = d3.svg.arc()
-                .innerRadius(radius * 0.2)
-                .outerRadius(radius * 0.4)
-                .startAngle(0);
+              var arc = d3.svg.arc()
+                  .innerRadius(radius * 0.2)
+                  .outerRadius(radius * 0.4)
+                  .startAngle(0);
 
-            var svg = d3.select(config).append("svg")
-                .attr("id", "loader")
-                .attr("width", 800)
-                .attr("height", 500)
-                .append("g")
-                .attr("transform", "translate(" + 800 / 2 + "," + 500 / 2 + ")")
+              var svg = d3.select(config).append("svg")
+                  .attr("id", "loader")
+                  .attr("width", 800)
+                  .attr("height", 500)
+                  .append("g")
+                  .attr("transform", "translate(" + 800 / 2 + "," + 500 / 2 + ")")
 
-            var background = svg.append("path")
-                .datum({
-                    endAngle: 0.33 * tau
-                })
-                .style("fill", "#4D4D4D")
-                .attr("d", arc)
-                .call(spin, 1500)
+              var background = svg.append("path")
+                  .datum({
+                      endAngle: 0.33 * tau
+                  })
+                  .style("fill", "#4D4D4D")
+                  .attr("d", arc)
+                  .call(spin, 1500)
 
-            function spin(selection, duration) {
-                selection.transition()
-                    .ease("linear")
-                    .duration(duration)
-                    .attrTween("transform", function() {
-                        return d3.interpolateString("rotate(0)", "rotate(360)");
-                    });
+              function spin(selection, duration) {
+                  selection.transition()
+                      .ease("linear")
+                      .duration(duration)
+                      .attrTween("transform", function() {
+                          return d3.interpolateString("rotate(0)", "rotate(360)");
+                      });
 
-                setTimeout(function() {
-                    spin(selection, duration);
-                }, duration);
-            }
+                  setTimeout(function() {
+                      spin(selection, duration);
+                  }, duration);
+              }
 
-            function transitionFunction(path) {
-                path.transition()
-                    .duration(7500)
-                    .attrTween("stroke-dasharray", tweenDash)
-                    .each("end", function() {
-                        d3.select(this).call(transition);
-                    });
-            }
+              function transitionFunction(path) {
+                  path.transition()
+                      .duration(7500)
+                      .attrTween("stroke-dasharray", tweenDash)
+                      .each("end", function() {
+                          d3.select(this).call(transition);
+                      });
+              }
 
-        };
+          };
+      }
+
+      var myLoader = loader("#loader_container1")
+      myLoader();
+
+
+
+      d3.json("./viz/data.json", function(error, map) {
+
+          d3.select("body").select('#loader_container1').remove();
+          d3.select("body").select('#loader_container2').remove();
+          d3.select("body").select('#loader_container3').remove();
+          d3.select("body").select('#loader_container4').remove();
+          d3.select("body").select('#loader_container5').remove();
+          d3.select("body").select('#loader_container6').remove();
+          d3.select("body").select('#loader_container7').remove();
+
+
+          function plotty(id, parameter, parameterName, color) {
+
+              $("#removeIt").hide()
+
+              var tip = d3.tip()
+                  .attr('class', 'd3-tip')
+                  .offset([-10, 0])
+                  .html(function(d) {
+                      return "<span style='color:white'>" + d.properties.DISTRICT + "<br><br>" + parameterName + ": " + eval(parameter) + "</span>";
+                  })
+
+              var width = 1000,
+                  height = 800;
+
+              var projection = d3.geo.albers()
+                  .scale(1500)
+                  .translate([(width / 2) - 40, height / 2])
+                  .rotate([-80.0200, 0])
+                  .center([0, 22.1800])
+
+              var svg = d3.select("body").select(id).append("svg")
+                  .attr("width", width)
+                  .attr("height", height);
+
+              var g = svg.append("g");
+
+              var path = d3.geo.path()
+                  .projection(projection);
+
+              var maximum = d3.max(topojson.feature(map, map.objects.asasas).features, function(d) {
+                  if (eval(parameter) != null) {
+                      return eval(parameter)
+                  }
+              })
+
+              var minimum = d3.min(topojson.feature(map, map.objects.asasas).features, function(d) {
+                  if (eval(parameter) != null) {
+                      return eval(parameter)
+                  }
+              })
+
+              var colorBrewerQuantize = d3.scale.quantize()
+                  .domain([minimum, maximum])
+                  .range(eval(color));
+
+              svg.call(tip);
+
+              svg.selectAll(".subunit")
+                  .data(topojson.feature(map, map.objects.asasas).features)
+                  .enter().append("path")
+                  .attr("class", "subunit")
+                  .attr("id", function(d) {
+                      return d.properties.DISTRICT
+                  })
+                  .attr("d", path)
+                  .attr("fill", function(d) {
+                      return colorBrewerQuantize(eval(parameter))
+                  })
+                  .on("mouseover", function(d) {
+                      tip.show(d)
+                      d3.select(this)
+                          .attr("fill", "orange")
+                  })
+                  .on("mouseout", function(d) {
+                      tip.hide(d)
+                      d3.select(this)
+                          .attr("fill", function(d) {
+                              return colorBrewerQuantize(eval(parameter))
+                          })
+                  })
+          }
+
+          plotty("#india1", "d.properties.TOTAL_LIT_PERCENT", "Literacy Rate (in %)", "colorbrewer.RdBu[9]")
+          plotty("#india2", "d.properties.TOTAL_POPU", "Population", "colorbrewer.YlGn[7]")
+          // plotty("#india3", "d.properties.SEXRATIO", "Sex Ratio (per 1000 males)", "colorbrewer.RdBu[9]")
+          plotty("#india4", "d.properties.HH_SIZE", "Average Household Size", "colorbrewer.Greens[7]")
+
+          // plotty("#india4", "GENDER_GAP", "Gender Gap", "#e74c3c", " d.properties.GENDER_GAP/30 ")
+
+          plotty("#india5", "d.properties.SC_PERCENT", "SC Population (in %)", "colorbrewer.OrRd[9]")
+          plotty("#india6", "d.properties.ST_PERCENT", "ST Population (in %)", "colorbrewer.Greens[9]")
+          plotty("#india7", "Math.round(((d.properties.POPUNDER6/d.properties.TOTAL_POPU)*100)* 100) / 100", "Infant Population (in %)", "colorbrewer.Blues[7]")
+
+      });
     }
-
-    var myLoader = loader("#loader_container1")
-    myLoader();
-    var myLoader = loader("#loader_container2")
-    myLoader();
-    var myLoader = loader("#loader_container3")
-    myLoader();
-    var myLoader = loader("#loader_container4")
-    myLoader();
-
-
-    d3.json("./viz/data.json", function(error, map) {
-
-        d3.select("body").select('#loader_container1').remove();
-        d3.select("body").select('#loader_container2').remove();
-        d3.select("body").select('#loader_container3').remove();
-        d3.select("body").select('#loader_container4').remove();
-        d3.select("body").select('#loader_container5').remove();
-        d3.select("body").select('#loader_container6').remove();
-        d3.select("body").select('#loader_container7').remove();
-
-
-        function plotty(id, parameter, parameterName, color) {
-
-            $("#removeIt").hide()
-
-            var tip = d3.tip()
-                .attr('class', 'd3-tip')
-                .offset([-10, 0])
-                .html(function(d) {
-                    return "<span style='color:white'>" + d.properties.DISTRICT + "<br><br>" + parameterName + ": " + eval(parameter) + "</span>";
-                })
-
-            var width = 1000,
-                height = 800;
-
-            var projection = d3.geo.albers()
-                .scale(1500)
-                .translate([(width / 2) - 40, height / 2])
-                .rotate([-80.0200, 0])
-                .center([0, 22.1800])
-
-            var svg = d3.select("body").select(id).append("svg")
-                .attr("width", width)
-                .attr("height", height);
-
-            var g = svg.append("g");
-
-            var path = d3.geo.path()
-                .projection(projection);
-
-            var maximum = d3.max(topojson.feature(map, map.objects.asasas).features, function(d) {
-                if (eval(parameter) != null) {
-                    return eval(parameter)
-                }
-            })
-
-            var minimum = d3.min(topojson.feature(map, map.objects.asasas).features, function(d) {
-                if (eval(parameter) != null) {
-                    return eval(parameter)
-                }
-            })
-
-            var colorBrewerQuantize = d3.scale.quantize()
-                .domain([minimum, maximum])
-                .range(eval(color));
-
-            svg.call(tip);
-
-            svg.selectAll(".subunit")
-                .data(topojson.feature(map, map.objects.asasas).features)
-                .enter().append("path")
-                .attr("class", "subunit")
-                .attr("id", function(d) {
-                    return d.properties.DISTRICT
-                })
-                .attr("d", path)
-                .attr("fill", function(d) {
-                    return colorBrewerQuantize(eval(parameter))
-                })
-                .on("mouseover", function(d) {
-                    tip.show(d)
-                    d3.select(this)
-                        .attr("fill", "orange")
-                })
-                .on("mouseout", function(d) {
-                    tip.hide(d)
-                    d3.select(this)
-                        .attr("fill", function(d) {
-                            return colorBrewerQuantize(eval(parameter))
-                        })
-                })
-        }
-
-        plotty("#india1", "d.properties.id", "Literacy Rate (in %)", "colorbrewer.RdBu[9]")
-        // plotty("#india2", "d.properties.TOTAL_POPU", "Population", "colorbrewer.YlGn[7]")
-        // // plotty("#india3", "d.properties.SEXRATIO", "Sex Ratio (per 1000 males)", "colorbrewer.RdBu[9]")
-        // plotty("#india4", "d.properties.HH_SIZE", "Average Household Size", "colorbrewer.Greens[7]")
-        //
-        // // plotty("#india4", "GENDER_GAP", "Gender Gap", "#e74c3c", " d.properties.GENDER_GAP/30 ")
-        //
-        // plotty("#india5", "d.properties.SC_PERCENT", "SC Population (in %)", "colorbrewer.OrRd[9]")
-        // plotty("#india6", "d.properties.ST_PERCENT", "ST Population (in %)", "colorbrewer.Greens[9]")
-        // plotty("#india7", "Math.round(((d.properties.POPUNDER6/d.properties.TOTAL_POPU)*100)* 100) / 100", "Infant Population (in %)", "colorbrewer.Blues[7]")
-
-    })
     </script>
 
+    <script type="text/javascript">
+      var mapjson;
+      $.ajax({
+        url : '/map/00000001ff62a22c0a8f6d92/getmap',
+        method : 'GET',
+        success : function(data){
+          mapjson = JSON.parse(JSON.stringify(data));
+          loadmap();
+        }
+      })
 
+    </script>
 </body>
 
 </html>
