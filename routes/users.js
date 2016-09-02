@@ -67,7 +67,38 @@ router.get('/signout',isauthenticated,function(req,res,next){
   res.status=200;
   res.redirect('/');
 });
-
+router.get('/getconqueredlocations',function(req,res,next){
+  User.findById(req.session.user.id,function(err,user){
+    if(err){
+      res.status=500;
+      res.send(err);
+    }else{
+      if(user){
+        console.log(user);
+        res.status=200;
+        res.send(user.conquered);
+      }else{
+        res.redirect('/user/signin');
+      }
+    }
+  });
+});
+router.get('/getbasearea',function(req,res,next){
+  User.findById(req.session.user.id,function(err,user){
+    if(err){
+      res.status=500;
+      res.send(err);
+    }else{
+      if(user){
+        console.log(user);
+        res.status=200;
+        res.send(user.baseArea);
+      }else{
+        res.redirect('/user/signin');
+      }
+    }
+  });
+});
 router.post('/getUsername',function(req,res,next){
   User.findById(req.session.user.id,function(err,user){
     if(err){
