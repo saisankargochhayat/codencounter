@@ -45,214 +45,29 @@
     }
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a class="nav-changed" href="../index.html#page-portfolio"><span>Portfolio</span></a></li>
-                    <li><a class="nav-changed" href="../publications.html"><span>Publications</span></a></li>
-                    <li><a class="nav-changed" target="_blank" href="../Dhvanil-Patel-Resume.pdf"><span>Résumé</span></a></li>
-                    <li><a class="nav-changed" href="../about-me.html"><span>About Me</span></a></li>
-                    <li><a class="nav-changed nav-last" href="../contact.html"><span>Contact</span></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
     <div class="container">
-        <div class="portfolio-title">
-            <h1 class="">Choropleth Maps of India</h1>
-            <p id="removeIt" class="portfolio-description">The tab might freeze for a few seconds when the page loads. Please be patient, it will be worth the wait! :)</p>
-            <p class="portfolio-description" style="margin-top: 20px">Visualizing data from 2001 census in the form of choropleth maps with district level resolution.</p>
-        </div>
-        <div class="row">
-            <div class="col-md-10">
-                <div class="portfolio-intro">
-                    <p>A choropleth map is a thematic map in which areas are shaded or patterned in proportion to the measurement of the statistical variable being displayed on the map. It provides an easy way to visualize how a measurement varies across a geographic area or it shows the level of variability within a region.</p>
-                    <p>The term "choropleth map" was introduced in 1938 by the geographer John Kirtland Wright in "Problems in Population Mapping".</p>
-                    <p>Choropleth maps are based on statistical data aggregated over previously defined regions (e.g., counties), in contrast to area-class and isarithmic maps, in which region boundaries are defined by data patterns. Thus, where defined regions are important to a discussion, as in an election map divided by electoral regions, choropleths are preferred.</p>
-                    <p>All the data used in this project can be found in this <a target="blank" href="./viz/indiaTopoJSON.json">TopoJSON</a> file. If you are interested in the raw data, you might be interested in these <a target="blank" href="../viz/220877.zip">ShapeFiles</a></p>
-                </div>
-            </div>
-        </div>
+
+
         <div class="row">
             <div class="col-md-9">
                 <div class="portfolio-content">
-                    <img class="img-rounded" src="../img/choropleth/image.jpg" alt="">
-                    <div style="margin-left: -5px; margin-top: 10px" class="portfolio-content-text">
-                        <p>I was trying to make a data visualization on the Rape Statistics in India after coming across a very thorough <a href="http://www.data.gov.in/catalog/district-wise-crimes-committed-against-women#web_catalog_tabs_block_10">dataset</a> which had district wise data for recorded crimes against women.</p>
-                        <p>However, the GeoData file and the dataset didn't match (GeoData file was of 2001 census while the dataset was based on 2013 data) Additional districts had been created during the time and many local boundaries were redrawn.</p>
-                        <p>Hence, I put it on hold and worked on these Choropleth maps. The data visualized here is based on different HDI parameters. There were 598 districts in India during 2001.</p>
-                    </div>
-                    <div style="margin-left: -5px; margin-top: 10px" class="portfolio-content-text">
-                        <p>For the choropleth maps, I've used quantized colors from ColorBrewer. ColorBrewer is a color specifications guide developed by Cynthia Brewer. You can check it out at <a href="http://www.data.gov.in/catalog/district-wise-crimes-committed-against-women#web_catalog_tabs_block_10">colorbrewer2.org</a>. It is an extremely comprehensive and useful utility for developing choropleth maps.</p>
-                    </div>
-                    <div style="margin-left: -5px; margin-top: 10px" class="portfolio-content-text">
-                        <p>The first map shown below is the one where the literacy rate per district has been visualized. The color scheme used here is the 9-class RdBu ColorBrewer palette. </p>
-                    </div>
-                    <div style="height: 800px; margin-top: 70px" class="portfolio-content-text">
+                        <div style="height: 800px; margin-top: 70px" class="portfolio-content-text">
                         <div style="margin-left: -70px" class="col-md-10">
                             <div id="loader_container1"></div>
                             <div class="inline" style="margin-left: -100px" id="india1"></div>
                         </div>
                         <div class="col-md-2" style="margin-left: 0px">
-                            <div class="sideCaption">
+                            <!-- <div class="sideCaption">
                                 <div style="float: left;width:250px;margin-left: 10px;">
                                     <p class="small-text" style="margin-top: 36px;border-bottom: #eee solid 1px;padding-bottom: 10px;"><strong>Literacy Rate per District</strong></p>
                                     <p class="small-text">The data is from 2001 census. District boundaries are also from 2001.
                                         <br>Colorscheme: ColorBrewer RedBlue[9]
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
-                    </div>
-                    <div style="margin-left: -5px; margin-top: 5px" class="portfolio-content-text">
-                        <p>Below is the choropleth map for <em>absolute</em> population per district. The color scheme I've used here is the ColorBrewer 7-class YellowGreen. This kind of a color scale is purposefully since the Yellow color slightly highlights the non-populated areas so as to make the entire map slightly more visually balanced. Also, the variation amongst the highest and the lowest populated districts is too high (which cannot be captured on a 7-class scale) For example: the highest populated district is Medinpur with population of over 9.6 million while the lowest populated district is Lahul and Spiti with a population of just about 33,000 (difference of nearly 9.6 million)</p>
-                    </div>
-                    <div style="height: 800px; margin-top: 70px" class="portfolio-content-text">
-                        <div style="margin-left: -70px" class="col-md-10">
-                            <div id="loader_container2"></div>
-                            <div class="inline" style="margin-left: -100px" id="india2"></div>
-                        </div>
-                        <div class="col-md-2" style="margin-left: 0px">
-                            <div class="sideCaption">
-                                <div style="float: left;width:250px;margin-left: 10px;">
-                                    <p class="small-text" style="margin-top: 36px;border-bottom: #eee solid 1px;padding-bottom: 10px;"><strong>Population per District</strong></p>
-                                    <p class="small-text">The data is from 2001 census. District boundaries are also from 2001.
-                                        <br>Colorscheme: ColorBrewer YlGn[7]
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div style="margin-left: -5px; margin-top: 5px" class="portfolio-content-text">
-                        <p>Below is the choropleth map for Sex Ratio per district. The darker regions are the ones where the ratio is more skewed (in general, less female-to-male ration)</p>
-                    </div>
-                    <div style="height: 800px; margin-top: 70px" class="portfolio-content-text">
-                        <div style="margin-left: -70px" class="col-md-10">
-                            <div id="loader_container3"></div>
-                            <div class="inline" style="margin-left: -100px" id="india3"></div>
-                        </div>
-                        <div class="col-md-2" style="margin-left: 0px">
-                            <div class="sideCaption">
-                                <div style="float: left;width:250px;margin-left: 10px;">
-                                    <p class="small-text" style="margin-top: 36px;border-bottom: #eee solid 1px;padding-bottom: 10px;"><strong>Sex Ratio per District</strong></p>
-                                    <p class="small-text">The data is from 2001 census. District boundaries are also from 2001.
-                                        <br>Colorscheme: #e74c3c
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <div style="margin-left: -5px; margin-top: 5px" class="portfolio-content-text">
-                        <p>Below is the choropleth map for integral average Household size per district. The darker regions are the ones where the family size is large. There is a very distinct difference between the northern and southern parts of India in terms of average household size, which can be partly explained on the basis of culture, tradition etc. The color scheme I've used here is the ColorBrewer 7-class Greens.</p>
-                    </div>
-                    <div style="height: 800px; margin-top: 70px" class="portfolio-content-text">
-                        <div style="margin-left: -70px" class="col-md-10">
-                            <div id="loader_container4"></div>
-                            <div class="inline" style="margin-left: -100px" id="india4"></div>
-                        </div>
-                        <div class="col-md-2" style="margin-left: 0px">
-                            <div class="sideCaption">
-                                <div style="float: left;width:250px;margin-left: 10px;">
-                                    <p class="small-text" style="margin-top: 36px;border-bottom: #eee solid 1px;padding-bottom: 10px;"><strong>Average Household size</strong></p>
-                                    <p class="small-text">The data is from 2001 census. District boundaries are also from 2001.
-                                        <br>Colorscheme: ColorBrewer Greens[7]
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="margin-left: -5px; margin-top: 5px" class="portfolio-content-text">
-                        <p>Below is the choropleth map for percentage population of Scheduled Castes per district. The color scheme I've used here is the ColorBrewer 9-class OrangeRed. The data is from the 2001 census.</p>
-                    </div>
-                    <div style="height: 800px; margin-top: 70px" class="portfolio-content-text">
-                        <div style="margin-left: -70px" class="col-md-10">
-                            <div id="loader_container5"></div>
-                            <div class="inline" style="margin-left: -100px" id="india5"></div>
-                        </div>
-                        <div class="col-md-2" style="margin-left: 0px">
-                            <div class="sideCaption">
-                                <div style="float: left;width:250px;margin-left: 10px;">
-                                    <p class="small-text" style="margin-top: 36px;border-bottom: #eee solid 1px;padding-bottom: 10px;"><strong>Percentage Population of Scheduled Castes</strong></p>
-                                    <p class="small-text">The data is from 2001 census. District boundaries are also from 2001.
-                                        <br>Colorscheme: ColorBrewer OrangeRed[9]
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="margin-left: -5px; margin-top: 5px" class="portfolio-content-text">
-                        <p>Below is the choropleth map for percentage population of Scheduled Tribes per district. Darker regions are the ones where the the percentage of ST population is larger. The color scheme I've used here is the ColorBrewer 9-class Greens. The data is from the 2001 census.</p>
-                    </div>
-                    <div style="height: 800px; margin-top: 70px" class="portfolio-content-text">
-                        <div style="margin-left: -70px" class="col-md-10">
-                            <div id="loader_container6"></div>
-                            <div class="inline" style="margin-left: -100px" id="india6"></div>
-                        </div>
-                        <div class="col-md-2" style="margin-left: 0px">
-                            <div class="sideCaption">
-                                <div style="float: left;width:250px;margin-left: 10px;">
-                                    <p class="small-text" style="margin-top: 36px;border-bottom: #eee solid 1px;padding-bottom: 10px;"><strong>Percentage Population of Scheduled Tribes</strong></p>
-                                    <p class="small-text">The data is from 2001 census. District boundaries are also from 2001.
-                                        <br>Colorscheme: ColorBrewer Greens[9]
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="margin-left: -5px; margin-top: 5px" class="portfolio-content-text">
-                        <p>This is the choropleth map for the percentage of infant population per district. Infants are considered as children below the age of 6. Darker regions are the ones where the infant population is larger. The color scheme I've used here is the ColorBrewer 9-class Blues. The data is from the 2001 census.</p>
-                    </div>
-                    <div style="height: 1000px; margin-top: 70px" class="portfolio-content-text">
-                        <div style="margin-left: -70px" class="col-md-10">
-                            <div id="loader_container7"></div>
-                            <div class="inline" style="margin-left: -100px" id="india7"></div>
-                        </div>
-                        <div class="col-md-2" style="margin-left: 0px">
-                            <div class="sideCaption">
-                                <div style="float: left;width:250px;margin-left: 10px;">
-                                    <p class="small-text" style="margin-top: 36px;border-bottom: #eee solid 1px;padding-bottom: 10px;"><strong>Percentage of infant population per district</strong></p>
-                                    <p class="small-text">The data is from 2001 census. District boundaries are also from 2001.
-                                        <br>Colorscheme: ColorBrewer Blues[7]
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-content-text">
-                        <p style="margin-top: 0px">I hope you found this project interesting. All the data used in this project can be found in this <a target="blank" href="../viz/indiaTopoJSON.json">TopoJSON</a> file. Other resources: <a target="blank" href="../viz/220877.zip">ShapeFiles</a> &amp; <a target="blank" href="#">GeoJSON</a> file.</p>
-                        <p>To convert ShapeFiles to GeoJSON &amp; TopoJSON format, I used <a href="http://shpescape.com/">Shape Escape</a></p>
-                        <p>For visualization purposes, a JavaScript visualization library: <a target="_blank" title="d3.js link" href="http://d3js.org/">d3.js</a> has been used.</p>
-                        <p>The data I've used is from 2001 census. It will be updated it once I find the ShapeFiles for the new districts which were created during 2001-2011.</p>
                     </div>
 
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="side-bar">
-                    <h4>Project Summary</h4>
-                    <p>Choropleth Maps of India.
-                        <br>Data from 2001 Census.</p>
-                    <h4>Duration</h4>
-                    <p>December 2014</p>
-                    <h4>Project Tags</h4>
-                    <p>Data Visualization,
-                        <br>Geo Visualization</p>
-                    <div class="magic">
-                        <h4>Share</h4>
-                        <div class="social-icons">
-                            <a class="left-padding btn btn-round btn-clear btn-twitter" style="margin-left: 3px;" href="#" onclick="fbs_click();"><i class="fa fa-twitter"></i></a>
-                            <a onclick="fb_click();" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.dhvanil.com/portfolio/choropleth.html" target="_blank" class="left-padding fb-share btn btn-round btn-clear btn-facebook" style="margin-left: 3px;"><i class="fa fa-facebook"></i></a>
-                            <a onclick="javascript:window.open('http://example.com','','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" href="https://plus.google.com/share?url=http://www.dhvanil.com/portfolio/choropleth.html" class="left-padding btn btn-round btn-clear btn-google" style="margin-left: 3px;">
-                                <i class="fa fa-google-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <section class="grey_area">
-        <div class="container ender">
-            <div class="row">
-                <div class="center width-sixty-five">
-                    <p>Follow on <a href="https://twitter.com/dhvanilp"> @dhvanilp</a> or <a href="https://www.facebook.com/dhvanil.patel.1?ref=tn_tnmn">facebook</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
