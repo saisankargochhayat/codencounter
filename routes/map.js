@@ -51,7 +51,7 @@ router.get('/createnewmap',function(req,res,next){
   });
   for(var i=0;i<596;i++){
     map.locations[i] = {
-      color : "#D3D3D3",
+      color : "#0000ff",
       level : 1,
       conquered : false,
       conqueredBy : {}
@@ -67,17 +67,11 @@ router.get('/createnewmap',function(req,res,next){
 });
 router.get('/:mapid/addnewconquer/:locationid',function(req,res,next){
   var locationid = req.params.locationid;
+  console.log(locationid);
   Map.find({_id:mongoose.Types.ObjectId(req.params.mapid)},function(err,map){
     var possible = true;
-    console.log(map);
-    var length=0;
-    if(map.conquered){
-      length = map.conquered.length;
-    }
-    for(var i=0;i<length;i++){
-      if(map.conquered[i].id === req.body.locationid){
-        possible=false;break;
-      }
+    if(err){
+      console.log(err);
     }
     if(possible){
       var obj = {};
@@ -85,21 +79,24 @@ router.get('/:mapid/addnewconquer/:locationid',function(req,res,next){
       obj.conquredby = {};
       //Change it
       obj.conquredby.id = 1;
-      obj.conquredby.color = "Red";
+      obj.conquredby.color = "#ff0000";
       obj.conquredby.name = "Rishi";
-
+      var locationmark1 = 'locations.'+locationid+'.conquered';
+      //locationmark1 = "'"+locationmark1+"'";
+      console.log(locationmark1);
+      var locationmark2 = 'locations.'+locationid+'.conqueredBy';
       ///////////////////////////////////////////////////////////
-      Map.update({_id : mongoose.Types.ObjectId(req.params.mapid)},{$addToSet : {"conquered" : obj}},function(err){
+      var updating = {
+        [locationmark1] : true,
+        [locationmark2] : obj.conquredby
+      };
+      console.log(updating);
+      Map.update({_id : mongoose.Types.ObjectId(req.params.mapid)},{$set :updating},function(err,data){
         if(err){
           console.log(err);
         }else{
-          Map.update({_id : mongoose.Types.ObjectId(req.params.mapid)} , {$pull : {"unconquered" : locationid}},function(err){
-            if(err){
-              console.log(err);
-            }else{
-              //Update user collection here.
-            }
-          })
+          console.log(data);
+          res.send("Done");
         }
       });
     }else{
