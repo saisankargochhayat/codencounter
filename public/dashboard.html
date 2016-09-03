@@ -96,6 +96,30 @@
             </div>
         </div>
     </header>
+    <form class="form-horizontal" method="POST" action="challenge/getunconqueredarea">
+    <fieldset>
+    <!-- Sign In Form -->
+    <!-- Text input-->
+    <div class="control-group">
+      <label class="control-label" for="userid">Score:</label>
+      <div class="controls">
+        <input required="" id="userid" name="score" type="text" class="form-control" placeholder="Enter Score" class="input-medium" required="">
+      </div>
+    </div>
+
+
+    <!-- Multiple Checkboxes (inline) -->
+
+
+    <!-- Button -->
+    <div class="control-group">
+      <label class="control-label" for="signin"></label>
+      <div class="controls">
+        <button id="signin" name="signin" class="btn btn-success">Sign In</button>
+      </div>
+    </div>
+    </fieldset>
+    </form>
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.js"></script>
@@ -208,11 +232,11 @@
                   .html(function(d) {
                       var conquered = mapjson.locations[d.properties.id].conquered;
                       if(!conquered){
-                        return "<span style='color:white'>" + d.properties.DISTRICT + "<br><br>" + parameterName + ": " + eval(parameter) +
-                        " Unconquered Area" + "</span>";
+                        return "<span style='color:white'>" + d.properties.DISTRICT + "<br><br>" + parameterName + ": " + eval(parameter) +"<br><br>"+
+                        " Unconquered Area" +"<br><br>" + " Level : " +mapjson.locations[d.properties.id].level+ "</span>";
                       }else{
-                        return "<span style='color:white'>" + d.properties.DISTRICT + "<br><br>" + parameterName + ": " + eval(parameter) +
-                        " Conquered By : " +  mapjson.locations[d.properties.id].conqueredBy.name+"</span>";
+                        return "<span style='color:white'>" + d.properties.DISTRICT + "<br><br>" + parameterName + ": " + eval(parameter) +"<br><br>"+
+                        " Conquered By : " +  mapjson.locations[d.properties.id].conqueredBy.name+ "<br><br>" + "Level : "+mapjson.locations[d.properties.id].level+"</span>";
                       }
 
                   })
@@ -295,7 +319,7 @@
     <script type="text/javascript">
       var mapjson;
       $.ajax({
-        url : '/map/0/getmap',
+        url : '/map/getmap',
         method : 'GET',
         success : function(data){
           mapjson = JSON.parse(JSON.stringify(data));
