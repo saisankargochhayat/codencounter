@@ -93,7 +93,7 @@
                       </div>
                   </div>
                   <div class="col-md-3" id="leaderboard">
-                  </div>  
+                  </div>
               </div>
             </div>
         </div>
@@ -286,6 +286,14 @@
                               return "#D3D3D3";
                             }
                           })
+                  })
+                  .on("click",function(d){
+                    if( mapjson.locations[d.properties.id].conquered){
+                      window.location.href="/challenge/trynewchallenge/"+d.properties.id;
+                    }
+                    else{
+                      window.location.href="/challenge/tryunconqueredarea/"+d.properties.id;
+                    }
                   })
           }
 
