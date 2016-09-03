@@ -87,7 +87,6 @@ router.post('/evaluatequiz', function(req,res,next){
         ctr++;
       }
       req.session.score = ctr;
-      delete res.session.set_no;
   });
 });
 
