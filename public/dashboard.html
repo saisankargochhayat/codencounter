@@ -57,18 +57,8 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                      <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          Login/Register
-                          <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                          <li><a href="#">Login</a></li>
-                          <li><a href="#">Register</a></li>
-                          <li role="separator" class="divider"></li>
-                          <li><a href="#">How to Play</a></li>
-                        </ul>
-                      </div></li>
+                        <a class="page-scroll" href="#about">How To Play</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -216,7 +206,15 @@
                   .attr('class', 'd3-tip')
                   .offset([-10, 0])
                   .html(function(d) {
-                      return "<span style='color:white'>" + d.properties.DISTRICT + "<br><br>" + parameterName + ": " + eval(parameter) + "</span>";
+                      var conquered = mapjson.locations[d.properties.id].conquered;
+                      if(!conquered){
+                        return "<span style='color:white'>" + d.properties.DISTRICT + "<br><br>" + parameterName + ": " + eval(parameter) +
+                        " Unconquered Area" + "</span>";
+                      }else{
+                        return "<span style='color:white'>" + d.properties.DISTRICT + "<br><br>" + parameterName + ": " + eval(parameter) +
+                        " Conquered By : " +  mapjson.locations[d.properties.id].conqueredBy.name+"</span>";
+                      }
+
                   })
 
               var width = 1000,
@@ -264,7 +262,12 @@
                   })
                   .attr("d", path)
                   .attr("fill", function(d) {
-                      return colorBrewerQuantize(eval(parameter))
+                    if( mapjson.locations[d.properties.id].conquered){
+                      return mapjson.locations[d.properties.id].conqueredBy.color;
+                    }else{
+                      return "#D3D3D3";
+                    }
+
                   })
                   .on("mouseover", function(d) {
                       tip.show(d)
@@ -275,21 +278,16 @@
                       tip.hide(d)
                       d3.select(this)
                           .attr("fill", function(d) {
-                              return colorBrewerQuantize(eval(parameter))
+                            if( mapjson.locations[d.properties.id].conquered){
+                              return mapjson.locations[d.properties.id].conqueredBy.color;
+                            }else{
+                              return "#D3D3D3";
+                            }
                           })
                   })
           }
 
-          plotty("#india1", "d.properties.TOTAL_LIT_PERCENT", "Literacy Rate (in %)", "colorbrewer.RdBu[9]")
-          plotty("#india2", "d.properties.TOTAL_POPU", "Population", "colorbrewer.YlGn[7]")
-          // plotty("#india3", "d.properties.SEXRATIO", "Sex Ratio (per 1000 males)", "colorbrewer.RdBu[9]")
-          plotty("#india4", "d.properties.HH_SIZE", "Average Household Size", "colorbrewer.Greens[7]")
-
-          // plotty("#india4", "GENDER_GAP", "Gender Gap", "#e74c3c", " d.properties.GENDER_GAP/30 ")
-
-          plotty("#india5", "d.properties.SC_PERCENT", "SC Population (in %)", "colorbrewer.OrRd[9]")
-          plotty("#india6", "d.properties.ST_PERCENT", "ST Population (in %)", "colorbrewer.Greens[9]")
-          plotty("#india7", "Math.round(((d.properties.POPUNDER6/d.properties.TOTAL_POPU)*100)* 100) / 100", "Infant Population (in %)", "colorbrewer.Blues[7]")
+          plotty("#india1", "d.properties.id", "Id is", "colorbrewer.RdBu[9]")
 
       });
     }
@@ -297,7 +295,7 @@
     <script type="text/javascript">
       var mapjson;
       $.ajax({
-        url : '/map/00000001ff62a22c0a8f6d92/getmap',
+        url : '/map/0/getmap',
         method : 'GET',
         success : function(data){
           mapjson = JSON.parse(JSON.stringify(data));

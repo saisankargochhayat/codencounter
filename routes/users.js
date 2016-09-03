@@ -4,6 +4,7 @@ var router = express.Router();
 var User = require('../models/users');
 var bcrypt = require('bcrypt');
 var Map = require('../models/map');
+var mongoose = require('mongoose');
 var isauthenticated = function(req,res,next){
   if(req.session.user){
     next();
@@ -35,7 +36,7 @@ var getrandomid = function(){
             unconquered[unconquered.length-1].id = i;
           }
         }
-        console.log(unconquered);
+        //console.log(unconquered);
         var id = getRandomInt(0,unconquered.length);
         console.log(id);
         resolve(unconquered[id].id);
@@ -57,22 +58,19 @@ router.post('/signUp', function(req, res, next) {
       basearea : id,
       score : 100
     });
+    newUser.conquered.push(id);
     newUser.save(function (err, user) {
-        var msg;
         if (err){
           console.log(err);
           res.status = 502;
-          msg=err;
+          res.send(err);
         }else{
-          res.status = 200;
           req.session.user = {};
-          req.session.user.id = user._id;
-          req.session.user.name = user.name;
+          req.session.user.id = user.id;
+          req.session.user.name = user.username;
           req.session.user.color = user.color;
-          req.session.user.score = user.score;
-          res.redirect('/dashboard')
+          res.redirect('/map/addnewconquer/'+user.basearea);
         }
-        res.send(msg);
       });
   });
 });
