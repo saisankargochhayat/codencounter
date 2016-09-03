@@ -11,7 +11,8 @@ db.on('error', console.error.bind(console, 'connection error:'));
     color : {type:String , required : true},
     password: {type:String, required:true},
     basearea : {type:String,required:true},
-    conquered : Array
+    conquered : Array,
+    score : {type:Number , required:true}
   });
   userSchema.pre('save', function(next) {
       var user = this;
