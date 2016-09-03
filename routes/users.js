@@ -160,4 +160,49 @@ router.post('/getUsername',function(req,res,next){
     }
   });
 });
+router.get('/updatescore/:scorechange',function(req,res,next){
+  User.update({_id : mongoose.Types.ObjectId(req.session.user.id)},{$inc : {score : req.params.scorechange}},function(err,data){
+    if(err){
+      console.log(err);
+      res.send(err);
+    }else{
+      console.log(data);
+      res.redirect('/dashboard');
+    }
+  })
+});
+router.get('/getrank',function(req,res,next){
+  User.find().sort({"score" : -1}).exec(function(err,users){
+    if(err){
+      console.log(err);
+      res.send(err);
+    }else{
+      console.log(users);
+      var rank=1;
+      for(var i=0;i<users.length;i++){
+        if(users[i]._id == req.session.user.id){
+          break;
+        }else{
+          rank++;
+        }
+      }
+      console.log(rank);
+      res.status=200;
+      res.send({
+        rank : rank
+      });
+    }
+  });
+});
+router.get('/leaderboards',function(req,res,next){
+  User.find().limit(10).sort({"score" : -1}).exec(function(err,users){
+    if(err){
+      console.log(err);
+      res.send(err);
+    }else{
+      console.log(users);
+      res.send(users);
+    }
+  });
+});
 module.exports = router;
