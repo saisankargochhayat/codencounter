@@ -12,16 +12,16 @@
     <title>Code-N-Counter</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost:3000/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://localhost:3000/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,400italic' rel='stylesheet' type='text/css'>
         <!-- Theme CSS -->
-    <link href="css/grayscale.min.css" rel="stylesheet">
+    <link href="http://localhost:3000/css/grayscale.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -81,6 +81,7 @@
             <div class="container">
               <div class="row">
                   <form class="" action="/quiz/evaluatequiz" method="post">
+                    <input id='go_to_url' type="text" name="gotourl" hidden="true">
                   <div id="ques" style="color:black">
 
 
@@ -96,18 +97,18 @@
     </header>
 
     <!-- jQuery -->
-    <script src="vendor/jquery/jquery.js"></script>
+    <script src="http://localhost:3000/vendor/jquery/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://localhost:3000/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="js/grayscale.min.js"></script>
+    <script src="http://localhost:3000/js/grayscale.min.js"></script>
 
-    <script type="text/javascript" src="./js/colorbrewer.js"></script>
+    <script type="text/javascript" src="http://localhost:3000/js/colorbrewer.js"></script>
     <script type="text/javascript">
     function fbs_click() {
         var twtTitle = document.title;
@@ -126,6 +127,18 @@
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
+    var url = window.location.pathname;
+    var path = url.split('/');
+    if(path[2]=="tryunconquredarea"){
+      gotourl = "getunconqueredarea";
+    }
+    if(path[2]=="trynewchallenge"){
+      gotourl = "addnewchallenge";
+    }
+    if(path[2]=="acceptchallenge"){
+      gotourl = "completechallenge";
+    }
+    $('#go_to_url').attr('value',gotourl);
     $.ajax({
       url:"/quiz/getquiz",
       method:"GET",

@@ -5,6 +5,7 @@ var User = require('../models/users');
 var bcrypt = require('bcrypt');
 var mongoose = require('mongoose');
 var Challenge = require('../models/challenges');
+var path = require('path');
 var isauthenticated = function(req,res,next){
   if(req.session.user){
     next();
@@ -31,7 +32,7 @@ router.get('/trynewchallenge/:locationid',function(req,res,next){
           id : map.locations[locationid].conquredby.id,
           name : map.locations[locationid].conquredby.name
         };
-        res.send("Done");
+        res.sendFile(path.resolve(__dirname+'/../public/quiz.html'));
       }else{
         res.send("This place is not conquered by anyone yet.");
       }
@@ -52,7 +53,7 @@ router.post('/addnewchallenge',function(req,res,next){
       res.send(err);
     }else{
       console.log(challenge);
-      res.send("Challenged added");
+      res.send("Challenge added");
     }
   })
 });
@@ -77,7 +78,7 @@ router.get('/acceptchallenge/:challengeid',function(req,res,next){
       console.log(challenge);
       req.session.acceptchallenge = {};
       req.session.acceptchallenge.id = challenge._id;
-      res.send("Done");
+      res.sendFile(path.resolve(__dirname+'/../public/quiz.html'));
     }
   });
 });
@@ -110,13 +111,13 @@ router.get('/tryunconquredarea/:locationid',function(req,res,next){
       }else{
         req.session.unconquered = {};
         req.session.unconquered.locationid = locationid;
-        res.send("Done");
+        res.sendFile(path.resolve(__dirname+'/../public/quiz.html'));
         //Redirect it
       }
     }
   });
 });
-router.post('/getunconqueredarea',function(req,res,next){
+router.get('/getunconqueredarea',function(req,res,next){
   var locationid = req.session.unconquered.locationid;
   if(req.session.score >3){
     Map.findOne({},function(err,map){
