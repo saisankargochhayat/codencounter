@@ -133,7 +133,7 @@
         console.log(data);
         for(var i=0;i<data.questions.length;i++){
         var question = $("<div/>",{"text":data.questions[i],"class":"box"});
-        $('#ques').append($('<div class="col-md-offset-1 col-md-5 panel panel-info"><div class="panel-heading">'+data.questions[i].ques+'</div><div class="panel-body">'+'<input type="radio" name="gender'+i+'" value="'+data.questions[i].option1+'">'+data.questions[i].option1+'</br><input type="radio" name="gender'+i+'" value="'+data.questions[i].option2+'">'+data.questions[i].option2+'</br><input type="radio" name="gender'+i+'" value="'+data.questions[i].option3+'">'+data.questions[i].option3+'</br><input type="radio" name="gender'+i+'" value="'+data.questions[i].option4+'">'+data.questions[i].option4+'</br>'));
+        $('#ques').append($('<div class="col-md-offset-1 col-md-5 panel panel-info"><div class="panel-heading">'+data.questions[i].ques+'</div><div class="panel-body">'+'<input type="radio" name="correct'+i+'" value="'+data.questions[i].option1+'">'+data.questions[i].option1+'</br><input type="radio" name="correct'+i+'" value="'+data.questions[i].option2+'">'+data.questions[i].option2+'</br><input type="radio" name="correct'+i+'" value="'+data.questions[i].option3+'">'+data.questions[i].option3+'</br><input type="radio" name="correct'+i+'" value="'+data.questions[i].option4+'">'+data.questions[i].option4+'</br>'));
 
 
       };$('#ques').append($('<input type="submit" class="col-md-offset-1 btn btn-success" value="Submit">'));      }
