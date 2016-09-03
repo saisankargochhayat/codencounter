@@ -45,8 +45,9 @@ app.use('/test',function(req,res,next){
       if (err) throw err;
       obj = JSON.parse(data);
       //console.log(obj);
+      var c=0;
       for (var i=0;i<obj.objects.asasas.geometries.length;i++)
-      {
+      { c++;
         delete obj.objects.asasas.geometries[i].properties.POPUNDER6;
         delete obj.objects.asasas.geometries[i].properties.POP_ILLITERATE;
         delete obj.objects.asasas.geometries[i].properties.POP_ST;
@@ -73,9 +74,12 @@ app.use('/test',function(req,res,next){
         delete obj.objects.asasas.geometries[i].properties.SC_PERCENT;
         delete obj.objects.asasas.geometries[i].properties.ST_PERCENT;
         delete obj.objects.asasas.geometries[i].properties.STATE_CODE;
+        obj.objects.asasas.geometries[i].properties.id=i;
+
 
 
       }
+      console.log(c);
       fs.writeFile('public/viz/data.json', JSON.stringify(obj) , 'utf-8',function(){
         console.log("done");
       });
