@@ -12,6 +12,7 @@ var users = require('./routes/users');
 var maps = require('./routes/map');
 var quiz = require('./routes/quiz')
 var session = require('express-session');
+var challenge = require('./routes/challenge');
 var app = express();
 var fs = require('fs');
 // view engine setup
@@ -68,7 +69,7 @@ app.use('/test',function(req,res,next){
 
 app.use('/map',maps);
 app.use('/quiz',quiz);
-
+app.use('/challenge',challenge);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

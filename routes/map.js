@@ -35,8 +35,8 @@ var getrandomid = function(){
   return promise;
 }
 /* GET users listing. */
-router.get('/:mapid/getmap',function(req,res,next){
-  Map.findById(mongoose.Types.ObjectId(req.params.mapid),function(err,map){
+router.get('/getmap',function(req,res,next){
+  Map.findOne({},function(err,map){
     if(err){
       console.log(err);
     }else{
@@ -66,6 +66,7 @@ router.get('/createnewmap',function(req,res,next){
   });
 });
 router.get('/addnewconquer/:locationid',function(req,res,next){
+  var locationid = req.params.locationid;
   Map.findOne({},function(err,map){
     var possible = true;
     if(err){
@@ -89,7 +90,7 @@ router.get('/addnewconquer/:locationid',function(req,res,next){
         [locationmark2] : obj.conquredby
       };
       console.log(updating);
-      Map.update({_id : mongoose.Types.ObjectId(req.params.mapid)},{$set :updating},function(err,data){
+      Map.update({_id : mongoose.Types.ObjectId(map._id)},{$set :updating},function(err,data){
         if(err){
           console.log(err);
         }else{
