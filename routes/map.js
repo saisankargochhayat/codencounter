@@ -65,10 +65,8 @@ router.get('/createnewmap',function(req,res,next){
     }
   });
 });
-router.get('/:mapid/addnewconquer/:locationid',function(req,res,next){
-  var locationid = req.params.locationid;
-  console.log(locationid);
-  Map.find({_id:mongoose.Types.ObjectId(req.params.mapid)},function(err,map){
+router.get('/addnewconquer/:locationid',function(req,res,next){
+  Map.findOne({},function(err,map){
     var possible = true;
     if(err){
       console.log(err);
@@ -78,9 +76,9 @@ router.get('/:mapid/addnewconquer/:locationid',function(req,res,next){
       obj.id = locationid;
       obj.conquredby = {};
       //Change it
-      obj.conquredby.id = 1;
-      obj.conquredby.color = "#ff0000";
-      obj.conquredby.name = "Rishi";
+      obj.conquredby.id = req.session.user.id;
+      obj.conquredby.color = req.session.user.color;
+      obj.conquredby.name = req.session.user.name;
       var locationmark1 = 'locations.'+locationid+'.conquered';
       //locationmark1 = "'"+locationmark1+"'";
       console.log(locationmark1);
