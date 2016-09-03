@@ -265,6 +265,9 @@
 
       d3.json("./viz/data.json", function(error, map) {
 
+      var districts = topojson.feature(map, map.objects.asasas).features,
+          neighbors = topojson.neighbors(map.objects.asasas.geometries);
+
           d3.select("body").select('#loader_container1').remove();
           d3.select("body").select('#loader_container2').remove();
           d3.select("body").select('#loader_container3').remove();
