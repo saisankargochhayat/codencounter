@@ -61,9 +61,33 @@ router.post('/addquiz',function(req,res,next){
 
 router.get('/getquiz', function(req,res,next){
   var set = Math.floor(Math.random() * 5) + 1;
+  req.session.set_no = set;
   Quiz.findOne({setno: set}, function(err,quiz){
     if (err) console.log(err);
     else res.send(quiz);
+  });
+});
+
+router.post('/evaluatequiz', function(req,res,next){
+  Quiz.findOne({setno:req.session.set_no},function(err,quiz){
+      var ctr=0;
+      if(quiz.questions[0].correct == req.body.correct1){
+        ctr++;
+      }
+      if(quiz.questions[1].correct == req.body.correct2){
+        ctr++;
+      }
+      if(quiz.questions[2].correct == req.body.correct3){
+        ctr++;
+      }
+      if(quiz.questions[3].correct == req.body.correct4){
+        ctr++;
+      }
+      if(quiz.questions[4].correct == req.body.correct5){
+        ctr++;
+      }
+      req.session.score = ctr;
+      delete res.session.set_no;
   });
 });
 
