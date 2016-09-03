@@ -84,7 +84,7 @@
 
                       </div>
                   </div>
-                  <div class="portfolio-content col-md-3" style="margin-top:80px">
+                  <div class="portfolio-content col-md-3" style="margin-top:100px">
 
                     <div class="panel panel-default">
                       <!-- Default panel contents -->
@@ -170,9 +170,11 @@
           console.log(dat);
 
 
-          // for(var i=0;i<data.length;i++){
-          //   $('#challenge').append($('<li class="list-group-item">'+(i+1)+'.'+data[i].username+'</li>'));
-          // }
+          for(var i=0;i<dat.length;i++){
+            $('#challenge').append($('<li class="list-group-item">'+dat[i].challenger.name+'<br> attacked at Region: '+dat[i].locationid+'<a href="#" class="btn btn-danger" role="button">Defend Now</a></li>'));
+
+
+          }
 
         }
       })
