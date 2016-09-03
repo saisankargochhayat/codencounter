@@ -57,7 +57,16 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">How To Play</a>
+                      <div class="btn-group" style="margin-top:5px" id="user">
+                      <!-- <button type="button" class="btn btn-info" id="user">Allo User</button> -->
+                      <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a href="/users/signout">Logout</a></li>
+                      </ul>
+                      </div>
                     </li>
                 </ul>
             </div>
@@ -164,6 +173,17 @@
         }
       })
       $.ajax({
+        url:"/users/getUsername",
+        method:"POST",
+        success:function(data){
+          console.log(data);
+
+
+            $('#user').prepend($('<button type="button" class="btn btn-info" id="user">Allo '+data+'</button>'));
+
+        }
+      })
+        $.ajax({
         url:"/challenge/getchallenges",
         method:"POST",
         success:function(dat){
@@ -245,6 +265,9 @@
 
 
       d3.json("./viz/data.json", function(error, map) {
+
+      var districts = topojson.feature(map, map.objects.asasas).features,
+          neighbors = topojson.neighbors(map.objects.asasas.geometries);
 
           d3.select("body").select('#loader_container1').remove();
           d3.select("body").select('#loader_container2').remove();
