@@ -10,6 +10,31 @@ var isauthenticated = function(req,res,next){
     res.redirect('/');
   }
 };
+var minid =1;
+var maxid = 100;
+function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+var getrandomid = function(){
+  var promise = new Promise(function(resolve,reject){
+    var id = getRandomInt(minid,maxid);
+    User.find({conquered:{$elemMatch : id}},function(err,users){
+      if(err){
+        reject(err);
+      }
+      if(users.length>0){
+
+      }else{
+        resolve(id);
+      }
+    });
+  });
+  return promise;
+}
 /* GET users listing. */
 router.post('/signUp', function(req, res, next) {
   console.log("Sign up called");
@@ -47,6 +72,7 @@ router.post('/signin',function(req,res,next){
               req.session.user = {};
               req.session.user.id = user._id;
               req.session.user.name = user.name;
+              req.session.user.color = user.color;
               res.status=200;
               res.redirect('/dashboard')
             }else{
@@ -115,4 +141,5 @@ router.post('/getUsername',function(req,res,next){
     }
   });
 });
+router.post('/')
 module.exports = router;

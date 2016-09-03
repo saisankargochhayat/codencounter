@@ -9,6 +9,7 @@ mongoose.connect('mongodb://localhost/codencounter');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var maps = require('./routes/map');
 var session = require('express-session');
 var app = express();
 // view engine setup
@@ -33,6 +34,7 @@ app.use(session({
 }))
 app.use('/', routes);
 app.use('/users', users);
+
 app.use('/test',function(req,res,next){
   //var json = $.getJSON('/public/viz/in',function(json){
     //
@@ -44,6 +46,9 @@ app.use('/test',function(req,res,next){
 var json = require('public/viz/indiaTopoJSON.json');
 console.log(json);
 });
+
+app.use('/map',maps);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
