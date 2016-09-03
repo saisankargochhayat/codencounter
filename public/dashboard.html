@@ -88,7 +88,6 @@
                                 <div id="loader_container1"></div>
                                 <div class="inline" style="margin-left: -100px" id="india1"></div>
                             </div>
-
                         </div>
 
                       </div>
@@ -98,26 +97,34 @@
                     <div class="panel panel-default">
                       <!-- Default panel contents -->
                       <div class="panel-heading">Leaderboard</div>
-                      <ul class="list-group" style="color:black" id="leaderboard">
+                      <table class="table table-striped" style="color:black;text-align:left">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Bounty</th>
+                          </tr>
+                        </thead>
+                        <tbody id="leaderboard">
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="panel panel-default">
+                      <!-- Default panel contents -->
+                      <div class="panel-heading">My Rank:</div>
+                      <ul class="list-group" style="color:black" id="myrank">
                       </ul>
-                  </div>
-                  <div class="panel panel-default">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading">My Rank:</div>
-                    <ul class="list-group" style="color:black" id="myrank">
-                    </ul>
-                </div>
-                <div class="panel panel-default">
-                  <!-- Default panel contents -->
-                  <div class="panel-heading">Defend Your Region:</div>
-                  <ul class="list-group" style="color:black" id="challenge">
-                  </ul>
-              </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <!-- Default panel contents -->
+                      <div class="panel-heading">Defend Your Region:</div>
+                      <ul class="list-group" style="color:black" id="challenge">
+                      </ul>
+                    </div>
               </div>
             </div>
         </div>
     </header>
-
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.js"></script>
@@ -155,52 +162,41 @@
         method:"GET",
         success:function(data){
           console.log(data);
-
           for(var i=0;i<data.length;i++){
-            $('#leaderboard').append($('<li class="list-group-item">'+(i+1)+'.'+data[i].username+'</li>'));
+            $('#leaderboard').append($('<tr><td>'+(i+1)+'</td><td>'+ data[i].username+'</td><td>'+ data[i].score+'</td></tr>'));
           }
         }
       })
+
       $.ajax({
         url:"/users/getrank",
         method:"GET",
         success:function(data){
           console.log(data);
-
-
             $('#myrank').append($('<li class="list-group-item">'+data.rank+'</li>'));
-
         }
       })
+
       $.ajax({
         url:"/users/getUsername",
         method:"POST",
         success:function(data){
           console.log(data);
-
-
             $('#user').prepend($('<button type="button" class="btn btn-info" id="user">Allo '+data+'</button>'));
-
         }
       })
-        $.ajax({
+
+      $.ajax({
         url:"/challenge/getchallenges",
         method:"POST",
         success:function(dat){
           console.log(dat);
-
-
           for(var i=0;i<dat.length;i++){
-            $('#challenge').append($('<li class="list-group-item">'+dat[i].challenger.name+'<br> attacked at Region: '+dat[i].locationid+'<a href="#" class="btn btn-danger" role="button">Defend Now</a></li>'));
-
-
+            $('#challenge').append($('<li class="list-group-item">'+dat[i].challenger.name+' attacked at Region: '+dat[i].locationid+'<br><a href="#" class="btn btn-danger" role="button">Defend Now</a></li>'));
           }
-
         }
       })
     });
-
-
 
     </script>
     <script type="text/javascript">
