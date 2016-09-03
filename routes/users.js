@@ -11,8 +11,7 @@ var isauthenticated = function(req,res,next){
     res.redirect('/');
   }
 };
-var minid =0;
-var maxid = 595;
+
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
@@ -22,19 +21,23 @@ function getRandomInt(min, max) {
 }
 var getrandomid = function(){
   var promise = new Promise(function(resolve,reject){
-    Map.find({},function(err,map){
+    Map.findOne({},function(err,map){
       if(err){
         console.log(err);
         reject(err);
       }else{
+        //console.log(map.locations);
         var unconquered = [];
         for(var i=0;i<map.locations.length;i++){
-          if(map.locations[i].conquered=false){
+          if(map.locations[i].conquered==false){
+            console.log(i + " is not conquered !");
             unconquered.push(map.locations[i]);
-            unconquered[i].id = i;
+            unconquered[unconquered.length-1].id = i;
           }
         }
+        console.log(unconquered);
         var id = getRandomInt(0,unconquered.length);
+        console.log(id);
         resolve(unconquered[id].id);
       }
     });
@@ -51,7 +54,8 @@ router.post('/signUp', function(req, res, next) {
       password:req.body.pass,
       color : req.body.color,
       conquered : new Array(),
-      basearea : id
+      basearea : id,
+      score : 100
     });
     newUser.save(function (err, user) {
         var msg;
@@ -65,6 +69,7 @@ router.post('/signUp', function(req, res, next) {
           req.session.user.id = user._id;
           req.session.user.name = user.name;
           req.session.user.color = user.color;
+          req.session.user.score = user.score;
           res.redirect('/dashboard')
         }
         res.send(msg);
