@@ -66,7 +66,10 @@ router.get('/addnewchallenge',function(req,res,next){
   })
 });
 router.post('/getchallenges',function(req,res,next){
-  Challenge.find({challengedto :{id : req.session.user.id}},function(err,challenges){
+  var query ={
+    "challengedto.id" : req.session.user.id
+  }
+  Challenge.find(query,function(err,challenges){
     if(err){
       console.log(err);
       res.send(err);
