@@ -44,4 +44,12 @@ router.post('/:quizid/addquestion',function(req,res,next){
     }
   });
 });
+
+router.get('/getquiz', function(req,res,next){
+  var set = Math.randomize()%5;
+  Quiz.findOne({setno: set}, function(err,quiz){
+    if (err) console.log(err);
+    else res.send(quiz);
+  });
+});
 module.exports = router;
