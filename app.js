@@ -10,6 +10,7 @@ mongoose.connect('mongodb://localhost/codencounter');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var maps = require('./routes/map');
+var quiz = require('./routes/quiz')
 var session = require('express-session');
 var app = express();
 var fs = require('fs');
@@ -87,6 +88,7 @@ app.use('/test',function(req,res,next){
 });
 
 app.use('/map',maps);
+app.use('/quiz',quiz);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
