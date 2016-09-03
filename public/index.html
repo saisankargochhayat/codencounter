@@ -66,110 +66,88 @@
         <div class="intro-body">
             <div class="container">
               <div class="row">
-                  <div class="col-md-offset-9">
-                    <div class="bs-example bs-example-tabs">
-            <ul id="myTab" class="nav nav-tabs">
-              <li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
-              <li class=""><a href="#signup" data-toggle="tab">Register</a></li>
-            </ul>
-        </div>
-      <div class="modal-body">
-        <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade active in" id="signin">
-            <form class="form-horizontal" method="POST" action="users/signin">
-            <fieldset>
-            <!-- Sign In Form -->
-            <!-- Text input-->
-            <div class="control-group">
-              <label class="control-label" for="userid">Username:</label>
-              <div class="controls">
-                <input required="" id="userid" name="name" type="text" class="form-control" placeholder="Enter Username" class="input-medium" required="">
-              </div>
-            </div>
+                  <div class="col-md-offset-9 col-md-3" style="background-color:#fff">
+                    <div>
+                        <ul id="myTab" class="nav nav-tabs nav-justified">
+                          <li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
+                          <li class=""><a href="#signup" data-toggle="tab">Register</a></li>
+                        </ul>
+                    </div>
+                    <div class="modal-body">
+                      <div id="myTabContent" class="tab-content">
+                      <div class="tab-pane fade active in" id="signin">
+                          <form class="form-horizontal" method="POST" action="users/signin">
+                          <fieldset>
 
-            <!-- Password input-->
-            <div class="control-group">
-              <label class="control-label" for="passwordinput">Password:</label>
-              <div class="controls">
-                <input required="" id="passwordinput" name="pass" class="form-control" type="password" placeholder="Enter Password" class="input-medium">
-              </div>
-            </div>
+                            <!-- Text input-->
+                            <div class="control-group">
+                              <label class="control-label" for="userid">Username:</label>
+                              <div class="controls">
+                                <input required="" id="userid" name="name" type="text" class="form-control" placeholder="Enter Username" class="input-medium" required="">
+                              </div>
+                            </div>
 
-            <!-- Multiple Checkboxes (inline) -->
+                            <!-- Password input-->
+                            <div class="control-group">
+                              <label class="control-label" for="passwordinput">Password:</label>
+                              <div class="controls">
+                                <input required="" id="passwordinput" name="pass" class="form-control" type="password" placeholder="Enter Password" class="input-medium">
+                              </div>
+                            </div>
 
-
-            <!-- Button -->
-            <div class="control-group">
-              <label class="control-label" for="signin"></label>
-              <div class="controls">
-                <button id="signin" name="signin" class="btn btn-success">Sign In</button>
-              </div>
-            </div>
-            </fieldset>
-            </form>
-        </div>
-        <div class="tab-pane fade" id="signup">
-            <form class="form-horizontal" method="POST" action="users/signUp">
-            <fieldset>
-            <!-- Sign Up Form -->
-            <!-- Text input-->
-
-
-            <!-- Text input-->
-            <div class="control-group">
-              <label class="control-label" for="userid">Username:</label>
-              <div class="controls">
-                <input id="userid" name="name" class="form-control" type="text" placeholder="Enter Username" class="input-large" required>
-              </div>
-            </div>
-
-            <!-- Password input-->
-            <div class="control-group">
-              <label class="control-label" for="password">Password:</label>
-              <div class="controls">
-                <input id="password" name="pass" class="form-control" type="password" placeholder="Enter Password" class="input-large" required>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="password">Color:</label>
-              <div class="controls">
-                <input name="color" class="form-control" placeholder="Color" class="input-large" required>
-              </div>
-            </div>
-
-            <!-- Multiple Radios (inline) -->
-
-
-
-            <!-- Button -->
-            <div class="control-group">
-              <label class="control-label" for="confirmsignup"></label>
-              <div class="controls">
-                <button id="confirmsignup" name="confirmsignup" class="btn btn-success">Sign Up</button>
-              </div>
-            </div>
-            </fieldset>
-            </form>
-      </div>
-    </div>
-      </div>
-                    <!-- <form method='post' action='/users/signin'>
->>>>>>> 89e5a5c187baaf418f6df2ee2d7593fe27b90bc9
-                      <div class="form-group">
-                        <input type="text" required class="form-control" name = "name" placeholder="name"><br>
-                        <input type="password" required class="form-control" name = "pass" placeholder="pass"><br>
-                        <input type="text" required class="form-control" name = "color" placeholder="Color"><br>
-
+                            <!-- Button -->
+                            <div class="control-group">
+                              <label class="control-label" for="signin"></label>
+                              <div class="controls">
+                                <button id="signin" name="signin" class="btn btn-success">Sign In</button>
+                              </div>
+                            </div>
+                          </fieldset>
+                          </form>
                       </div>
-<<<<<<< HEAD
-                      <button type="submit" class="btn btn-default">Sign up</button>
-                    </form>
-=======
-                      <button type="submit" class="btn btn-default">Login</button>
-                    </form> -->
+
+                      <div class="tab-pane fade" id="signup">
+                          <form class="form-horizontal" method="POST" action="users/signUp">
+                          <fieldset>
+
+                          <!-- Text input-->
+                          <div class="control-group">
+                            <label class="control-label" for="userid">Username:</label>
+                            <div class="controls">
+                              <input id="userid" name="name" class="form-control" type="text" placeholder="Enter Username" class="input-large" required>
+                            </div>
+                          </div>
+
+                          <!-- Password input-->
+                          <div class="control-group">
+                            <label class="control-label" for="password">Password:</label>
+                            <div class="controls">
+                              <input id="password" name="pass" class="form-control" type="password" placeholder="Enter Password" class="input-large" required>
+                            </div>
+                          </div>
+
+                          <div class="control-group">
+                            <label class="control-label" for="password">Color:</label>
+                            <div class="controls">
+                              <input name="color" class="form-control" placeholder="Color" class="input-large" required>
+                            </div>
+                          </div>
+
+                          <!-- Button -->
+                          <div class="control-group">
+                            <label class="control-label" for="confirmsignup"></label>
+                            <div class="controls">
+                              <button id="confirmsignup" name="confirmsignup" class="btn btn-success">Sign Up</button>
+                            </div>
+                          </div>
+                          </fieldset>
+                          </form>
+                      </div>
                   </div>
+                </div>
               </div>
             </div>
+          </div>
         </div>
     </header>
 
