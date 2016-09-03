@@ -45,7 +45,7 @@ var getrandomid = function(){
   return promise;
 }
 /* GET users listing. */
-router.post('/signUp', function(req, res, next) {
+router.post('/signup', function(req, res, next) {
   console.log("Sign up called");
   var promise = getrandomid();
   promise.then(function(id){
