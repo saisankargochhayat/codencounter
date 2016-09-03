@@ -255,7 +255,7 @@
                 })
                 .attr("d", path)
                 .attr("fill", function(d) {
-                    return colorBrewerQuantize(eval(parameter))
+                    return d.properties.color
                 })
                 .on("mouseover", function(d) {
                     tip.show(d)
@@ -266,7 +266,7 @@
                     tip.hide(d)
                     d3.select(this)
                         .attr("fill", function(d) {
-                            return colorBrewerQuantize(eval(parameter))
+                            return d.properties.color;
                         })
                 })
         }
