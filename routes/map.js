@@ -95,7 +95,7 @@ router.get('/addnewconquer/:locationid',function(req,res,next){
           console.log(err);
         }else{
           console.log(data);
-          res.send("Done");
+          res.redirect('/dashboard');
         }
       });
     }else{
