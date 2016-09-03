@@ -25,15 +25,20 @@ router.post('/addquiz',function(req,res,next){
   });
 });
 router.post('/:quizid/addquestion',function(req,res,next){
+  console.log(req.body);
+  var body = JSON.parse(req.body);
+  console.log(body);
   Quiz.find({_id : mongoose.Types.ObjectId(req.params.quizid)},function(err,quiz){
     if(err){
       console.log(err);
     }else{
+      console.log("Trying");
       var question = {
-        description : req.body.description,
-        options : JSON.parse(JSON.stringify(req.body.options)),
-        answer : req.body.answer
+        description : body.description,
+        options : body.options,
+        answer : body.answer
       };
+      console.log(question);
       Quiz.update({_id : mongoose.Types.ObjectId(req.params.quizid)},{$addToSet:{"questions" : question}},function(err){
         if(err){
           console.log(err);
