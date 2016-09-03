@@ -10656,34 +10656,9 @@
 			}, {
 				"type": "Polygon",
 				"properties": {
-					"POPUNDER6": 23052,
-					"POP_ILLITERATE": 41126,
-					"POP_ST": 130768,
-					"TOTAL_POPU": 137223,
-					"STDTCODE": 1506,
-					"POP_ST": 33,
-					"STATE_NAME": "MIZORAM",
-					"HH_SIZE": 5,
-					"GENDER_GAP": 7,
-					"SEXRATIO": 922,
-					"DISTRICT_C": "06",
-					"MAH_ph3": null,
-					"MALE_LIT_PERCENT": 87,
-					"STDTCODE_1": "1506",
-					"SEXRATIO_06": 962,
-					"SEXRATIO_SC": 222,
-					"POP_LITERATE": 96097,
-					"SEXRATIO_ST": 976,
-					"TOTALMALE": 71402,
-					"NAME": "Lunglei",
 					"DISTRICT": "LUNGLEI",
-					"FEMALE_LIT_PERCENT": 81,
-					"TOTALFEMALE": 65821,
-					"TOTAL_LIT_PERCENT": 100,
-					"SC_PERCENT": 0,
-					"ST_PERCENT": 95,
-					"STATE_CODE": "15"
-				},
+					"TOTAL_LIT_PERCENT": 100
+					},
 				"arcs": [
 					[1181, -1088, -1061, -1173, 1182, 1183, 1184]
 				]
