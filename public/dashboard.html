@@ -200,6 +200,7 @@
 
     </script>
     <script type="text/javascript">
+    var challengesmapping = {};
     var loadmap = function(){
       console.log(mapjson);
       function loader(config) {
@@ -284,10 +285,10 @@
                       var conquered = mapjson.locations[d.properties.id].conquered;
                       if(!conquered){
                         return "<span style='color:white'>" + d.properties.DISTRICT + "<br><br>" + parameterName + ": " + eval(parameter) +"<br><br>"+
-                        " Unconquered Area" +"<br><br>" + " Level : " +mapjson.locations[d.properties.id].level+ "</span>";
+                        " Unconquered Area</span>";
                       }else{
                         return "<span style='color:white'>" + d.properties.DISTRICT + "<br><br>" + parameterName + ": " + eval(parameter) +"<br><br>"+
-                        " Conquered By : " +  mapjson.locations[d.properties.id].conqueredBy.name+ "<br><br>" + "Level : "+mapjson.locations[d.properties.id].level+"</span>";
+                        " Conquered By : " +  mapjson.locations[d.properties.id].conqueredBy.name+"</span>";
                       }
 
                   })

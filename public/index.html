@@ -125,12 +125,10 @@
                               <input id="password" name="pass" class="form-control" type="password" placeholder="Enter Password" class="input-large" required>
                             </div>
                           </div>
+                          <br>
 
                           <div class="control-group">
-                            <label class="control-label" for="password">Color:</label>
-                            <div class="controls">
-                              <input name="color" class="form-control" placeholder="Color" class="input-large" required>
-                            </div>
+                            <input name="color" type="hidden" id="color_value" value="86fffc"><button class="btn btn-info jscolor {valueElement: 'color_value'}">Pick a color</button>
                           </div>
 
                           <!-- Button -->
@@ -178,18 +176,13 @@
     </script>
     <script type="text/javascript">
     $(document).ready(function(){
-    $.ajax({
-      url:"/users/leaderboards",
-      method:"GET",
-      success:function(data){
-        console.log(data);
-        for(var i=0;i<data.questions.length;i++){
-        var question = $("<div/>",{"text":data.questions[i],"class":"box"});
-        $('#leader').append($('<input type="submit" class="col-md-offset-1 btn btn-success" value="Submit">'));      }
-    })
+    var randomColor = Math.floor(Math.random()*16777215).toString(16);
+    $("#color_value").attr("value",randomColor);
+
+
     });
     </script>
-
+    <script src="js/jscolor.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>

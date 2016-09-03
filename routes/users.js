@@ -47,13 +47,13 @@ var getrandomid = function(){
 }
 /* GET users listing. */
 router.post('/signUp', function(req, res, next) {
-  console.log("Sign up called");
+  console.log(req.body);
   var promise = getrandomid();
   promise.then(function(id){
     var newUser = new User({
       username:req.body.name,
       password:req.body.pass,
-      color : req.body.color,
+      color : '#' + req.body.color,
       conquered : new Array(),
       basearea : id,
       score : 100

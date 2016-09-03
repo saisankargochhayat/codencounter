@@ -93,10 +93,10 @@ router.get('/acceptchallenge/:challengeid',function(req,res,next){
     }
   });
 });
-router.post('/completechallenge',function(req,res,next){
+router.get('/completechallenge',function(req,res,next){
   var id = req.session.acceptchallenge.id;
-  var score = req.body.score;
-  Challenge.findById(mongoose.Type.ObjectId(id),function(err,challenge){
+  var score = req.session.score;
+  Challenge.findById(mongoose.Types.ObjectId(id),function(err,challenge){
     if(err){
       console.log(err);
       res.send(err);
@@ -104,8 +104,31 @@ router.post('/completechallenge',function(req,res,next){
       console.log(challenge);
       if(challenge.score>=score){
         //New route to update map
+        User.findById(challenge.challenger.id,function(err,user){
+          if(err){
+            console.log(err);
+            res.send(err);
+          }else{
+            req.session.locationid = challenge.locationid;
+            req.session.challengeid = challenge._id;
+            req.session.newuser = {
+              id : user._id,
+              color : user.color,
+              name : user.username
+            };
+            res.redirect('/map/changeconquer/');
+          }
+        });
       }else{
         //Increase score of current user
+        Challenge.remove({_id : mongoose.Types.ObjectId(challenge._id)},function(err){
+          if(err){
+            console.log(err);
+            res.send(err);
+          }else{
+            res.redirect('/dashboard');
+          }
+        });
       }
     }
   });
