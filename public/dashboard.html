@@ -339,6 +339,14 @@
                             }
                           })
                   })
+                  .on("click",function(d){
+                    if( mapjson.locations[d.properties.id].conquered){
+                      window.location.href="/challenge/trynewchallenge/"+d.properties.id;
+                    }
+                    else{
+                      window.location.href="/challenge/tryunconqueredarea/"+d.properties.id;
+                    }
+                  })
           }
 
           plotty("#india1", "d.properties.id", "Id is", "colorbrewer.RdBu[9]")
