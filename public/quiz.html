@@ -20,10 +20,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,400italic' rel='stylesheet' type='text/css'>
-    <link href="./css/choropleth.css" rel="stylesheet">
-    <link href="./css/colorbrewer.css" rel="stylesheet">
-
-    <!-- Theme CSS -->
+        <!-- Theme CSS -->
     <link href="css/grayscale.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -57,9 +54,21 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">How To Play</a>
-                    </li>
+                      <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          Login/Register
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                          <li><a href="#">Login</a></li>
+                          <li><a href="#">Register</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="#">How to Play</a></li>
+                        </ul>
+                      </div></li>
+
                 </ul>
+
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -72,23 +81,8 @@
             <div class="container">
               <div class="row">
                   <div class="col-md-9">
-                      <div class="portfolio-content">
+                      <div class="portfolio-content" id="ques">
 
-                        <div style="height: 800px; margin-top: 70px" class="portfolio-content-text">
-                            <div style="margin-left: -70px" class="col-md-10">
-                                <div id="loader_container1"></div>
-                                <div class="inline" style="margin-left: -100px" id="india1"></div>
-                            </div>
-                            <div class="col-md-2" style="margin-left: 0px">
-                                <!-- <div class="sideCaption">
-                                    <div style="float: left;width:250px;margin-left: 10px;">
-                                        <p class="small-text" style="margin-top: 36px;border-bottom: #eee solid 1px;padding-bottom: 10px;"><strong>Literacy Rate per District</strong></p>
-                                        <p class="small-text">The data is from 2001 census. District boundaries are also from 2001.
-                                            <br>Colorscheme: ColorBrewer RedBlue[9]
-                                    </div>
-                                </div> -->
-                            </div>
-                        </div>
 
                       </div>
                   </div>
@@ -126,7 +120,7 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-    
+
 
 
 </body>
