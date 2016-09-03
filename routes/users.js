@@ -3,6 +3,7 @@ var router = express.Router();
 
 var User = require('../models/users');
 var bcrypt = require('bcrypt');
+var Map = require('../models/map');
 var isauthenticated = function(req,res,next){
   if(req.session.user){
     next();
@@ -10,8 +11,8 @@ var isauthenticated = function(req,res,next){
     res.redirect('/');
   }
 };
-var minid =1;
-var maxid = 100;
+var minid =0;
+var maxid = 595;
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
@@ -21,15 +22,20 @@ function getRandomInt(min, max) {
 }
 var getrandomid = function(){
   var promise = new Promise(function(resolve,reject){
-    var id = getRandomInt(minid,maxid);
-    User.find({conquered:{$elemMatch : id}},function(err,users){
+    Map.find({},function(err,map){
       if(err){
+        console.log(err);
         reject(err);
-      }
-      if(users.length>0){
-
       }else{
-        resolve(id);
+        var unconquered = [];
+        for(var i=0;i<map.locations.length;i++){
+          if(map.locations[i].conquered=false){
+            unconquered.push(map.locations[i]);
+            unconquered[i].id = i;
+          }
+        }
+        var id = getRandomInt(0,unconquered.length);
+        resolve(unconquered[id].id);
       }
     });
   });
@@ -38,22 +44,32 @@ var getrandomid = function(){
 /* GET users listing. */
 router.post('/signUp', function(req, res, next) {
   console.log("Sign up called");
-  var newUser = new User({username:req.body.name , password:req.body.pass});
-  newUser.save(function (err, user) {
-      var msg;
-      if (err){
-        console.log(err);
-        res.status = 502;
-        msg=err;
-      }else{
-        res.status = 200;
-        req.session.user = {};
-        req.session.user.id = user._id;
-        req.session.user.name = user.name;
-        res.redirect('/dashboard')
-      }
-      res.send(msg);
+  var promise = getrandomid();
+  promise.then(function(id){
+    var newUser = new User({
+      username:req.body.name,
+      password:req.body.pass,
+      color : req.body.color,
+      conquered : new Array(),
+      basearea : id
     });
+    newUser.save(function (err, user) {
+        var msg;
+        if (err){
+          console.log(err);
+          res.status = 502;
+          msg=err;
+        }else{
+          res.status = 200;
+          req.session.user = {};
+          req.session.user.id = user._id;
+          req.session.user.name = user.name;
+          req.session.user.color = user.color;
+          res.redirect('/dashboard')
+        }
+        res.send(msg);
+      });
+  });
 });
 router.post('/signin',function(req,res,next){
   User.findOne({username:req.body.name},function(err,user){
@@ -141,5 +157,4 @@ router.post('/getUsername',function(req,res,next){
     }
   });
 });
-router.post('/')
 module.exports = router;
