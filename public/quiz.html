@@ -38,9 +38,9 @@
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     Menu <i class="fa fa-bars"></i>
-                </button>
+                </button> -->
                 <a class="navbar-brand page-scroll" href="#page-top">
                     <i class="fa fa-play-circle"></i> <span class="light">Code-</span>N<span class="light">-Counter</span>
                 </a>
@@ -53,7 +53,7 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-                    <li>
+                    <!-- <li>
                       <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                           Login/Register
@@ -65,7 +65,7 @@
                           <li role="separator" class="divider"></li>
                           <li><a href="#">How to Play</a></li>
                         </ul>
-                      </div></li>
+                      </div></li> -->
 
                 </ul>
 
@@ -76,48 +76,23 @@
     </nav>
 
     <!-- Intro Header -->
-    <header class="intro">
+    <header class="intro" style="margin-top:85px">
         <div class="intro-body">
             <div class="container">
               <div class="row">
-                  <div class="col-md-9">
-                      <div class="portfolio-content" id="ques">
-                        <form action="#" method="post" id="quiz">
-                          <li>
+                  <form class="" action="/quiz/evaluatequiz" method="post">
+                  <div id="ques" style="color:black">
 
-    <h2>Q1.CSS Stands for...</h2>
 
-    <div>
-        <input type="radio" name="question-1-answers" id="question-1-answers-A" value="A" />
-        <label for="question-1-answers-A">A) Computer Styled Sections </label>
-    </div>
-    </li>
-    <li>
-    <div>
-        <input type="radio" name="question-1-answers" id="question-1-answers-B" value="B" />
-        <label for="question-1-answers-B">B) Cascading Style Sheets</label>
-    </div>
-    </li>
-    <li>
-    <div>
-        <input type="radio" name="question-1-answers" id="question-1-answers-C" value="C" />
-        <label for="question-1-answers-C">C) Crazy Solid Shapes</label>
-    </div>
-    </li>
-    </li>
-    <div>
-        <input type="radio" name="question-1-answers" id="question-1-answers-D" value="D" />
-        <label for="question-1-answers-D">D) None of the above</label>
-    </div>
-    </li>
 
-                        </form>
+                    </div>
+
+                    </form>
 
                       </div>
                   </div>
               </div>
-            </div>
-        </div>
+
     </header>
 
     <!-- jQuery -->
@@ -150,28 +125,22 @@
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
     <script type="text/javascript">
-  $(document).ready(function(){
-    <script type="text/javascript">
-$(document).ready(function(){
-$.ajax({
-  url:"/quiz/getquiz",
-  method:"GET",
-  success:function(data){
-    console.log(data);
-    var divi = $('#test');
-    console.log(divi);
+    $(document).ready(function(){
+    $.ajax({
+      url:"/quiz/getquiz",
+      method:"GET",
+      success:function(data){
+        console.log(data);
+        for(var i=0;i<data.questions.length;i++){
+        var question = $("<div/>",{"text":data.questions[i],"class":"box"});
+        $('#ques').append($('<div class="col-md-offset-1 col-md-5 panel panel-info"><div class="panel-heading">'+data.questions[i].ques+'</div><div class="panel-body">'+'<input type="radio" name="gender'+i+'" value="'+data.questions[i].option1+'">'+data.questions[i].option1+'</br><input type="radio" name="gender'+i+'" value="'+data.questions[i].option2+'">'+data.questions[i].option2+'</br><input type="radio" name="gender'+i+'" value="'+data.questions[i].option3+'">'+data.questions[i].option3+'</br><input type="radio" name="gender'+i+'" value="'+data.questions[i].option4+'">'+data.questions[i].option4+'</br>'));
 
-    // // for(var i=0;i<data.length;i++){
-    // //   var room = data[i];
-    // //   var roomname = $("<div/>",{"text":room.name,"class":"box"});
-    // //   $('#roomadd').append($('<div class="panel-heading">'+room.name+'</div>')).append($('<div class="panel-body"><a href="/room/'+room.name+'" class="btn btn-success" role="button">Enter</a></div>'));
-    // };
 
-  }
-})
-});
-</script>
-</script>
+      };$('#ques').append($('<input type="submit" class="col-md-offset-1 btn btn-success" value="Submit">'));      }
+    })
+    });
+    </script>
+
 
 
 </body>
