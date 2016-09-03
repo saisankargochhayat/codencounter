@@ -41,41 +41,16 @@ app.use('/test',function(req,res,next){
   //var json = $.getJSON('/public/viz/in',function(json){
     //var fs = require('fs');
     var obj;
-    fs.readFile('public/viz/indiaTopoJSON.json', 'utf8', function (err, data) {
+    fs.readFile('public/viz/data.json', 'utf8', function (err, data) {
       if (err) throw err;
       obj = JSON.parse(data);
       //console.log(obj);
       var c=0;
       for (var i=0;i<obj.objects.asasas.geometries.length;i++)
       { c++;
-        delete obj.objects.asasas.geometries[i].properties.POPUNDER6;
-        delete obj.objects.asasas.geometries[i].properties.POP_ILLITERATE;
-        delete obj.objects.asasas.geometries[i].properties.POP_ST;
-        delete obj.objects.asasas.geometries[i].properties.TOTAL_POPU;
-        delete obj.objects.asasas.geometries[i].properties.STDTCODE;
-        delete obj.objects.asasas.geometries[i].properties.POP_ST;
-        delete obj.objects.asasas.geometries[i].properties.STATE_NAME;
-        delete obj.objects.asasas.geometries[i].properties.HH_SIZE;
-        delete obj.objects.asasas.geometries[i].properties.GENDER_GAP;
-        delete obj.objects.asasas.geometries[i].properties.SEXRATIO;
-        delete obj.objects.asasas.geometries[i].properties.DISTRICT_C;
-        delete obj.objects.asasas.geometries[i].properties.STATE_NAME;
-        delete obj.objects.asasas.geometries[i].properties.MAH_ph3;
-        delete obj.objects.asasas.geometries[i].properties.MALE_LIT_PERCENT;
-        delete obj.objects.asasas.geometries[i].properties.STDTCODE_1;
-        delete obj.objects.asasas.geometries[i].properties.SEXRATIO_06;
-        delete obj.objects.asasas.geometries[i].properties.SEXRATIO_SC;
-        delete obj.objects.asasas.geometries[i].properties.POP_LITERATE;
-        delete obj.objects.asasas.geometries[i].properties.SEXRATIO_ST;
-        delete obj.objects.asasas.geometries[i].properties.TOTALMALE;
-        delete obj.objects.asasas.geometries[i].properties.NAME;
-        delete obj.objects.asasas.geometries[i].properties.FEMALE_LIT_PERCENT;
-        delete obj.objects.asasas.geometries[i].properties.TOTALFEMALE;
-        delete obj.objects.asasas.geometries[i].properties.SC_PERCENT;
-        delete obj.objects.asasas.geometries[i].properties.ST_PERCENT;
-        delete obj.objects.asasas.geometries[i].properties.STATE_CODE;
-        obj.objects.asasas.geometries[i].properties.id=i;
 
+        obj.objects.asasas.geometries[i].properties.color="#bfbfbf";
+        delete obj.objects.asasas.geometries[i].color;
 
 
       }
