@@ -74,30 +74,41 @@
                   <div class="col-md-9">
                       <div class="portfolio-content">
 
-                        <div style="height: 800px; margin-top: 70px" class="portfolio-content-text">
+                        <div style="height: 800px; padding-top: 100px" class="portfolio-content-text">
                             <div style="margin-left: -70px" class="col-md-10">
                                 <div id="loader_container1"></div>
                                 <div class="inline" style="margin-left: -100px" id="india1"></div>
                             </div>
-                            <div class="col-md-2" style="margin-left: 0px">
-                                <!-- <div class="sideCaption">
-                                    <div style="float: left;width:250px;margin-left: 10px;">
-                                        <p class="small-text" style="margin-top: 36px;border-bottom: #eee solid 1px;padding-bottom: 10px;"><strong>Literacy Rate per District</strong></p>
-                                        <p class="small-text">The data is from 2001 census. District boundaries are also from 2001.
-                                            <br>Colorscheme: ColorBrewer RedBlue[9]
-                                    </div>
-                                </div> -->
-                            </div>
+
                         </div>
 
                       </div>
                   </div>
-                  <div class="col-md-3" id="leaderboard">
+                  <div class="portfolio-content col-md-3" style="margin-top:80px">
+
+                    <div class="panel panel-default">
+                      <!-- Default panel contents -->
+                      <div class="panel-heading">Leaderboard</div>
+                      <ul class="list-group" style="color:black" id="leaderboard">
+                      </ul>
                   </div>
+                  <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">My Rank:</div>
+                    <ul class="list-group" style="color:black" id="myrank">
+                    </ul>
+                </div>
+                <div class="panel panel-default">
+                  <!-- Default panel contents -->
+                  <div class="panel-heading">Defend Your Region:</div>
+                  <ul class="list-group" style="color:black" id="challenge">
+                  </ul>
+              </div>
               </div>
             </div>
         </div>
     </header>
+
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.js"></script>
@@ -128,7 +139,48 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $.ajax({
+        url:"/users/leaderboards",
+        method:"GET",
+        success:function(data){
+          console.log(data);
 
+          for(var i=0;i<data.length;i++){
+            $('#leaderboard').append($('<li class="list-group-item">'+(i+1)+'.'+data[i].username+'</li>'));
+          }
+        }
+      })
+      $.ajax({
+        url:"/users/getrank",
+        method:"GET",
+        success:function(data){
+          console.log(data);
+
+
+            $('#myrank').append($('<li class="list-group-item">'+data.rank+'</li>'));
+
+        }
+      })
+      $.ajax({
+        url:"/challenge/getchallenges",
+        method:"POST",
+        success:function(dat){
+          console.log(dat);
+
+
+          // for(var i=0;i<data.length;i++){
+          //   $('#challenge').append($('<li class="list-group-item">'+(i+1)+'.'+data[i].username+'</li>'));
+          // }
+
+        }
+      })
+    });
+
+
+
+    </script>
     <script type="text/javascript">
     var loadmap = function(){
       console.log(mapjson);

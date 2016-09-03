@@ -198,6 +198,19 @@
         window.open(twtLink, 'height=450', 'width=550', top = ' + ($(window).height() / 2 - 275) + ', left = ' + ($(window).width() / 2 - 225) + ');
     }
     </script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    $.ajax({
+      url:"/users/leaderboards",
+      method:"GET",
+      success:function(data){
+        console.log(data);
+        for(var i=0;i<data.questions.length;i++){
+        var question = $("<div/>",{"text":data.questions[i],"class":"box"});
+        $('#leader').append($('<input type="submit" class="col-md-offset-1 btn btn-success" value="Submit">'));      }
+    })
+    });
+    </script>
 
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
