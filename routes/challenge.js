@@ -61,7 +61,7 @@ router.get('/addnewchallenge',function(req,res,next){
       res.send(err);
     }else{
       console.log(challenge);
-      res.send("Challenge added");
+      res.redirect('/dashboard');
     }
   })
 });
