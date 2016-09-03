@@ -69,24 +69,28 @@ router.get('/getquiz', function(req,res,next){
 });
 
 router.post('/evaluatequiz', function(req,res,next){
+  console.log(req.body);
   Quiz.findOne({setno:req.session.set_no},function(err,quiz){
+    console.log(quiz.questions);
       var ctr=0;
-      if(quiz.questions[0].correct == req.body.correct1){
+      if(quiz.questions[0].correct === req.body.correct1){
         ctr++;
       }
-      if(quiz.questions[1].correct == req.body.correct2){
+      if(quiz.questions[1].correct === req.body.correct2){
         ctr++;
       }
-      if(quiz.questions[2].correct == req.body.correct3){
+      if(quiz.questions[2].correct === req.body.correct3){
         ctr++;
       }
-      if(quiz.questions[3].correct == req.body.correct4){
+      if(quiz.questions[3].correct === req.body.correct4){
         ctr++;
       }
-      if(quiz.questions[4].correct == req.body.correct5){
+      if(quiz.questions[4].correct === req.body.correct5){
         ctr++;
       }
       req.session.score = ctr;
+      console.log(ctr);
+      res.redirect('/challenge/' + req.body.gotourl);
   });
 });
 
