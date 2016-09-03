@@ -21,17 +21,19 @@ router.get('/trynewchallenge/:locationid',function(req,res,next){
       console.log(err);
       res.send(err);
     }else{
-      if( map.locations[locationid].conqured){
+      console.log(map.locations[locationid]);
+      if( map.locations[locationid].conquered){
         req.session.challenge = {};
-        req.session.challenge = locationid;
-        req.session.challenger = {
+        req.session.challenge.locationid = locationid;
+        req.session.challenge.challenger = {
           id : req.session.user.id,
           name : req.session.user.name
         };
-        req.session.challengedto = {
-          id : map.locations[locationid].conquredby.id,
-          name : map.locations[locationid].conquredby.name
+        req.session.challenge.challengedto = {
+          id : map.locations[locationid].conqueredBy.id,
+          name : map.locations[locationid].conqueredBy.name
         };
+        console.log(req.session.challenge);
         res.sendFile(path.resolve(__dirname+'/../public/quiz.html'));
       }else{
         res.send("This place is not conquered by anyone yet.");
@@ -39,14 +41,20 @@ router.get('/trynewchallenge/:locationid',function(req,res,next){
     }
   });
 });
-router.post('/addnewchallenge',function(req,res,next){
-  console.log(req.body);
+router.get('/addnewchallenge',function(req,res,next){
   var newchallenge = new Challenge({
     locationid : req.session.challenge.locationid,
-    challenger : req.session.challenge.challenger,
-    challengedto : req.session.challenge.challengedto,
-    score : req.body.score
+    challenger : {
+      id : req.session.challenge.challenger.id,
+      name : req.session.challenge.challenger.name
+    },
+    challengedto : {
+      id : req.session.challenge.challengedto.id,
+      name : req.session.challenge.challengedto.name
+    },
+    score : req.session.score
   });
+  console.log(newchallenge);
   newchallenge.save(function(err,challenge){
     if(err){
       console.log(err);

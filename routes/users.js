@@ -90,7 +90,7 @@ router.post('/signin',function(req,res,next){
             if(result){
               req.session.user = {};
               req.session.user.id = user._id;
-              req.session.user.name = user.name;
+              req.session.user.name = user.username;
               req.session.user.color = user.color;
               res.status=200;
               res.redirect('/dashboard')
