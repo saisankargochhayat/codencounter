@@ -171,7 +171,7 @@
 
 
           for(var i=0;i<dat.length;i++){
-            $('#challenge').append($('<li class="list-group-item">'+dat[i].challenger.name+'<br> attacked at Region: '+dat[i].locationid+'<a href="#" class="btn btn-danger" role="button">Defend Now</a></li>'));
+            $('#challenge').append($('<li class="list-group-item">'+dat[i].challenger.name+'<br> attacked at Region: '+dat[i].locationid+'<a href="'+'/challenge/acceptchallenge/'+dat[i]._id+'" class="btn btn-danger" role="button">Defend Now</a></li>'));
 
 
           }
@@ -184,6 +184,7 @@
 
     </script>
     <script type="text/javascript">
+    var challengesmapping = {};
     var loadmap = function(){
       console.log(mapjson);
       function loader(config) {

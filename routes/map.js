@@ -4,6 +4,7 @@ var Map = require('../models/map');
 var User = require('../models/users');
 var bcrypt = require('bcrypt');
 var mongoose = require('mongoose');
+var Challenge = require('../models/challenges');
 var isauthenticated = function(req,res,next){
   if(req.session.user){
     next();
@@ -62,6 +63,48 @@ router.get('/createnewmap',function(req,res,next){
       console.log(err);
     }else{
       res.send(map.id)
+    }
+  });
+});
+router.get('/changeconquer',function(req,res,next){
+  var locationid = req.session.locationid;
+  Map.findOne({},function(err,map){
+    var possible = true;
+    if(err){
+      console.log(err);
+    }else{
+      var obj = {};
+      obj.id = locationid;
+      obj.conquredby = {};
+      //Change it
+      obj.conquredby.id = req.session.newuser.id;
+      obj.conquredby.color = req.session.newuser.color;
+      obj.conquredby.name = req.session.newuser.name;
+      var locationmark1 = 'locations.'+locationid+'.conquered';
+      //locationmark1 = "'"+locationmark1+"'";
+      console.log(locationmark1);
+      var locationmark2 = 'locations.'+locationid+'.conqueredBy';
+      ///////////////////////////////////////////////////////////
+      var updating = {
+        [locationmark1] : true,
+        [locationmark2] : obj.conquredby
+      };
+      console.log(updating);
+      Map.update({_id : mongoose.Types.ObjectId(map._id)},{$set :updating},function(err,data){
+        if(err){
+          console.log(err);
+        }else{
+          console.log(data);
+          Challenge.remove({_id : mongoose.Types.ObjectId(req.session.challengeid)},function(err){
+            if(err){
+              console.log(err);
+              res.send(err);
+            }else{
+              res.redirect('/dashboard');
+            }
+          });
+        }
+      });
     }
   });
 });
