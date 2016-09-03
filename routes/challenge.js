@@ -118,7 +118,7 @@ router.get('/tryunconquredarea/:locationid',function(req,res,next){
 });
 router.post('/getunconqueredarea',function(req,res,next){
   var locationid = req.session.unconquered.locationid;
-  if(req.body.score >3){
+  if(req.session.score >3){
     Map.findOne({},function(err,map){
       if(err){
         console.log(err);
