@@ -89,6 +89,7 @@ router.get('/acceptchallenge/:challengeid',function(req,res,next){
       console.log(challenge);
       req.session.acceptchallenge = {};
       req.session.acceptchallenge.id = challenge._id;
+      req.session.acceptchallenge.userid = challenge.challenger.id;
       res.sendFile(path.resolve(__dirname+'/../public/quiz.html'));
     }
   });
@@ -126,7 +127,7 @@ router.get('/completechallenge',function(req,res,next){
             console.log(err);
             res.send(err);
           }else{
-            res.redirect('/dashboard');
+            res.redirect('/users/updatescore/50');
           }
         });
       }

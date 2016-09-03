@@ -167,7 +167,19 @@ router.get('/updatescore/:scorechange',function(req,res,next){
       res.send(err);
     }else{
       console.log(data);
-      res.redirect('/dashboard');
+      res.redirect('/dashboard?msg='+ "You just received "+req.params.scorechange+" Bounty Gold");
+    }
+  })
+});
+router.get('/updatescoreother/:scorechange',function(req,res,next){
+  console.log(req.params);
+  User.update({_id : mongoose.Types.ObjectId(req.session.newuser.id)},{$inc : {score : req.params.scorechange}},function(err,data){
+    if(err){
+      console.log(err);
+      res.send(err);
+    }else{
+      console.log(data);
+      res.redirect('/dashboard?msg='+ "You were not able to defend your region");
     }
   })
 });

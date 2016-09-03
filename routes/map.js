@@ -100,7 +100,7 @@ router.get('/changeconquer',function(req,res,next){
               console.log(err);
               res.send(err);
             }else{
-              res.redirect('/dashboard');
+              res.redirect('/users/updatescoreother/'+100);
             }
           });
         }
@@ -138,7 +138,7 @@ router.get('/addnewconquer/:locationid',function(req,res,next){
           console.log(err);
         }else{
           console.log(data);
-          res.redirect('/dashboard');
+          res.redirect('/users/updatescore/'+50);
         }
       });
     }else{
@@ -157,7 +157,7 @@ router.get('/getconqueredlocations',function(req,res,next){
         res.status=200;
         res.send(user.conquered);
       }else{
-        res.redirect('/user/signin');
+        res.redirect('/users/signin');
       }
     }
   });
@@ -173,7 +173,7 @@ router.get('/getbasearea',function(req,res,next){
         res.status=200;
         res.send(user.baseArea);
       }else{
-        res.redirect('/user/signin');
+        res.redirect('/users/signin');
       }
     }
   });
