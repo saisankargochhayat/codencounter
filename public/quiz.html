@@ -12,16 +12,16 @@
     <title>Code-N-Counter</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="http://codencounter.tk/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="http://codencounter.tk/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,400italic' rel='stylesheet' type='text/css'>
         <!-- Theme CSS -->
-    <link href="http://codencounter.tk/css/grayscale.min.css" rel="stylesheet">
+    <link href="/css/grayscale.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -66,38 +66,34 @@
 
     <!-- Intro Header -->
     <header class="intro" style="margin-top:85px">
-        <div class="intro-body">
-            <div class="container">
+      <div class="intro-body">
+          <div class="container">
               <div class="row">
                   <form class="" action="/quiz/evaluatequiz" method="post">
                     <input id='go_to_url' type="text" name="gotourl" hidden="true">
-                  <div id="ques" style="color:black">
-
-
-
-                    </div>
-
-                    </form>
-
+                      <div style="color:black;text-align:left">
+                        <div class="row" id="ques"></div>
                       </div>
-                  </div>
+                  </form>
               </div>
+          </div>
+      </div>
 
     </header>
 
     <!-- jQuery -->
-    <script src="http://codencounter.tk/vendor/jquery/jquery.js"></script>
+    <script src="/vendor/jquery/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="http://codencounter.tk/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="http://codencounter.tk/js/grayscale.min.js"></script>
+    <script src="/js/grayscale.min.js"></script>
 
-    <script type="text/javascript" src="http://codencounter.tk/js/colorbrewer.js"></script>
+    <script type="text/javascript" src="/js/colorbrewer.js"></script>
     <script type="text/javascript">
     function fbs_click() {
         var twtTitle = document.title;
@@ -134,16 +130,13 @@
       success:function(data){
         console.log(data);
         for(var i=0;i<data.questions.length;i++){
-        var question = $("<div/>",{"text":data.questions[i],"class":"box"});
-        $('#ques').append($('<div class="col-md-offset-1 col-md-5 panel panel-info"><div class="panel-heading">'+data.questions[i].ques+'</div><div class="panel-body">'+'<input type="radio" name="correct'+i+'" value="'+data.questions[i].option1+'">'+data.questions[i].option1+'</br><input type="radio" name="correct'+i+'" value="'+data.questions[i].option2+'">'+data.questions[i].option2+'</br><input type="radio" name="correct'+i+'" value="'+data.questions[i].option3+'">'+data.questions[i].option3+'</br><input type="radio" name="correct'+i+'" value="'+data.questions[i].option4+'">'+data.questions[i].option4+'</br>'));
-
-
-      };$('#ques').append($('<input type="submit" class="col-md-offset-1 btn btn-success" value="Submit">'));      }
-    })
+            $('#ques').append('<div class="col-md-offset-1 col-md-3 panel panel-info" style="padding:0 0 0 0"><div class="panel-heading">'+data.questions[i].ques+'</div><div class="panel-body">'+'<input type="radio" name="correct'+i+'" value="'+data.questions[i].option1+'"> '+data.questions[i].option1+'</br><input type="radio" name="correct'+i+'" value="'+data.questions[i].option2+'"> '+data.questions[i].option2+'</br><input type="radio" name="correct'+i+'" value="'+data.questions[i].option3+'"> '+data.questions[i].option3+'</br><input type="radio" name="correct'+i+'" value="'+data.questions[i].option4+'"> '+data.questions[i].option4+'</br>');
+        }
+        $('#ques').append('<input type="submit" class="col-md-offset-2 col-xs-offset-4 btn btn-success" value="Submit">');
+      }
+    });
     });
     </script>
-
-
 
 </body>
 
