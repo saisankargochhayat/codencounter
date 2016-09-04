@@ -1,5 +1,5 @@
 var assert = require('assert');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var mongoose = require('mongoose');
 SALT_WORK_FACTOR = 10;
 

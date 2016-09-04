@@ -5,7 +5,7 @@ var router = express.Router();
 
 
 var Quiz = require('../models/quiz');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var mongoose = require('mongoose');
 var isauthenticated = function(req,res,next){
   if(req.session.user){
