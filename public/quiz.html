@@ -94,18 +94,6 @@
     <script src="/js/grayscale.min.js"></script>
 
     <script type="text/javascript" src="/js/colorbrewer.js"></script>
-    <script type="text/javascript">
-    function fbs_click() {
-        var twtTitle = document.title;
-        var twtUrl = location.href;
-        var maxLength = 140 - (twtUrl.length + 1);
-        if (twtTitle.length > maxLength) {
-            twtTitle = twtTitle.substr(0, (maxLength - 3)) + '...';
-        }
-        var twtLink = 'http://twitter.com/home?status=' + encodeURIComponent(twtTitle + ' ' + twtUrl + ' via @dhvanilp');
-        window.open(twtLink, 'height=450', 'width=550', top = ' + ($(window).height() / 2 - 275) + ', left = ' + ($(window).width() / 2 - 225) + ');
-    }
-    </script>
 
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
@@ -128,7 +116,6 @@
       url:"/quiz/getquiz",
       method:"GET",
       success:function(data){
-        console.log(data);
         for(var i=0;i<data.questions.length;i++){
             $('#ques').append('<div class="col-md-offset-1 col-md-3 panel panel-info" style="padding:0 0 0 0"><div class="panel-heading">'+data.questions[i].ques+'</div><div class="panel-body">'+'<input type="radio" name="correct'+i+'" value="'+data.questions[i].option1+'"> '+data.questions[i].option1+'</br><input type="radio" name="correct'+i+'" value="'+data.questions[i].option2+'"> '+data.questions[i].option2+'</br><input type="radio" name="correct'+i+'" value="'+data.questions[i].option3+'"> '+data.questions[i].option3+'</br><input type="radio" name="correct'+i+'" value="'+data.questions[i].option4+'"> '+data.questions[i].option4+'</br>');
         }

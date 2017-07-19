@@ -21,29 +21,4 @@
   </form>
 </body>
 <script src="vendor/jquery/jquery.js"></script>
-<script>
-  $(document).ready(function(){
-    var question = {
-      description : "This is one random question.",
-      options : {
-        a : "A",
-        b : "B",
-        c: "C",
-        d : "D"
-      },
-      answer : "b"
-    };
-    console.log(question);
-    var data = JSON.stringify(question);
-    console.log(data);
-    $.ajax({
-      url:'/quiz/57c9ef8edbec61261f3dc5ea/addquestion',
-      method:'POST',
-      data : JSON.stringify(question),
-      success : function(quiz){
-        console.log(quiz);
-      }
-    })
-  });
-</script>
 </html>

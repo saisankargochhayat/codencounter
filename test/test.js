@@ -4,7 +4,7 @@ var should = require("should");
 var app = require('../app.js');
 
 // This agent refers to PORT where program is runninng.
-var server = supertest.agent("http://localhost:3030");
+var server = supertest.agent("http://localhost:" + (process.env.PORT || '3030'));
 // UNIT test begin
 describe("API endpoint testing", () => {
 
