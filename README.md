@@ -15,3 +15,11 @@ other users for a one-on-one quiz war.
 1.express.js
 2.bcrypt.js (for password hashing)
 3.
+# Steps :-
+1. git clone
+2. yarn install
+3. yarn start
+
+# Test :-
+1. yarn start
+2. yarn test
