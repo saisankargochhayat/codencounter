@@ -1,10 +1,25 @@
-##Codencounter
-A educational ultility app implemented to demostrate the implementation of gamification in educaion to improve the regularity and generate interest of Young Crowd.
+## Codencounter
+An educational game application to motivate students to study. Based on the concept of
+gamification of education.
+Users can capture locations in a virtual map by passing quizzes and challenging
+other users for a one-on-one quiz war.
 
-#Node.JS Web-App
+# Technology used:-
 
-#Modules Used:-
+1. NodeJS (Server side scripting)
+2. Express (Server framework)
+3. MongoDB (No-SQL database)
 
-1.express.js 
+# Modules Used:-
+
+1.express.js
 2.bcrypt.js (for password hashing)
 3.
+# Steps :-
+1. git clone
+2. yarn install
+3. yarn start
+
+# Test :-
+1. yarn start
+2. yarn test
