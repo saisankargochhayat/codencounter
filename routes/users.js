@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-
 var User = require('../models/users');
 var bcrypt = require('bcryptjs');
 var Map = require('../models/map');
 var mongoose = require('mongoose');
+
 var isauthenticated = function(req,res,next){
   if(req.session.user){
     next();
@@ -20,6 +20,7 @@ function getRandomArbitrary(min, max) {
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
 var getrandomid = function(){
   var promise = new Promise(function(resolve,reject){
     Map.findOne({},function(err,map){
@@ -27,27 +28,23 @@ var getrandomid = function(){
         console.log(err);
         reject(err);
       }else{
-        //console.log(map.locations);
         var unconquered = [];
         for(var i=0;i<map.locations.length;i++){
           if(map.locations[i].conquered==false){
-            console.log(i + " is not conquered !");
             unconquered.push(map.locations[i]);
             unconquered[unconquered.length-1].id = i;
           }
         }
-        //console.log(unconquered);
         var id = getRandomInt(0,unconquered.length);
-        console.log(id);
         resolve(unconquered[id].id);
       }
     });
   });
   return promise;
 }
+
 /* GET users listing. */
 router.post('/signUp', function(req, res, next) {
-  console.log(req.body);
   var promise = getrandomid();
   promise.then(function(id){
     var newUser = new User({
@@ -61,7 +58,6 @@ router.post('/signUp', function(req, res, next) {
     newUser.conquered.push(id);
     newUser.save(function (err, user) {
         if (err){
-          console.log(err);
           res.status = 502;
           res.send(err);
         }else{
@@ -74,6 +70,7 @@ router.post('/signUp', function(req, res, next) {
       });
   });
 });
+
 router.post('/signin',function(req,res,next){
   User.findOne({username:req.body.name},function(err,user){
     if(err){
@@ -81,7 +78,6 @@ router.post('/signin',function(req,res,next){
       res.send(err);
     }else{
       if(user){
-        console.log(user);
         bcrypt.compare(req.body.pass,user.password,function(err,result){
           if(err){
             res.status=500;
@@ -112,6 +108,7 @@ router.get('/signout',isauthenticated,function(req,res,next){
   res.status=200;
   res.redirect('/');
 });
+
 router.get('/getconqueredlocations',function(req,res,next){
   User.findById(req.session.user.id,function(err,user){
     if(err){
@@ -119,7 +116,6 @@ router.get('/getconqueredlocations',function(req,res,next){
       res.send(err);
     }else{
       if(user){
-        console.log(user);
         res.status=200;
         res.send(user.conquered);
       }else{
@@ -128,6 +124,7 @@ router.get('/getconqueredlocations',function(req,res,next){
     }
   });
 });
+
 router.get('/getbasearea',function(req,res,next){
   User.findById(req.session.user.id,function(err,user){
     if(err){
@@ -135,7 +132,6 @@ router.get('/getbasearea',function(req,res,next){
       res.send(err);
     }else{
       if(user){
-        console.log(user);
         res.status=200;
         res.send(user.baseArea);
       }else{
@@ -144,6 +140,7 @@ router.get('/getbasearea',function(req,res,next){
     }
   });
 });
+
 router.post('/getUsername',function(req,res,next){
   User.findById(req.session.user.id,function(err,user){
     if(err){
@@ -151,7 +148,6 @@ router.post('/getUsername',function(req,res,next){
       res.send(err);
     }else{
       if(user){
-        console.log(user);
         res.status=200;
         res.send(user.username);
       }else{
@@ -160,36 +156,32 @@ router.post('/getUsername',function(req,res,next){
     }
   });
 });
+
 router.get('/updatescore/:scorechange',function(req,res,next){
   User.update({_id : mongoose.Types.ObjectId(req.session.user.id)},{$inc : {score : req.params.scorechange}},function(err,data){
     if(err){
-      console.log(err);
       res.send(err);
     }else{
-      console.log(data);
       res.redirect('/dashboard?msg='+ "You just received "+req.params.scorechange+" Bounty Gold");
     }
   })
 });
+
 router.get('/updatescoreother/:scorechange',function(req,res,next){
-  console.log(req.params);
   User.update({_id : mongoose.Types.ObjectId(req.session.newuser.id)},{$inc : {score : req.params.scorechange}},function(err,data){
     if(err){
-      console.log(err);
       res.send(err);
     }else{
-      console.log(data);
       res.redirect('/dashboard?msg='+ "You were not able to defend your region");
     }
   })
 });
+
 router.get('/getrank',function(req,res,next){
   User.find().sort({"score" : -1}).exec(function(err,users){
     if(err){
-      console.log(err);
       res.send(err);
     }else{
-      console.log(users);
       var rank=1;
       for(var i=0;i<users.length;i++){
         if(users[i]._id == req.session.user.id){
@@ -198,7 +190,6 @@ router.get('/getrank',function(req,res,next){
           rank++;
         }
       }
-      console.log(rank);
       res.status=200;
       res.send({
         rank : rank
@@ -206,15 +197,15 @@ router.get('/getrank',function(req,res,next){
     }
   });
 });
+
 router.get('/leaderboards',function(req,res,next){
   User.find().limit(10).sort({"score" : -1}).exec(function(err,users){
     if(err){
-      console.log(err);
       res.send(err);
     }else{
-      console.log(users);
       res.send(users);
     }
   });
 });
+
 module.exports = router;

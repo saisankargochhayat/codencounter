@@ -8,7 +8,7 @@ var server = supertest.agent("http://localhost:" + (process.env.PORT || '3030'))
 // UNIT test begin
 describe("API endpoint testing", () => {
 
-  it("should return correct values of emission for a sample country", (done) => {
+  it("should check server working", (done) => {
     server
       .get('/')
       .expect("Content-type", /json/)
