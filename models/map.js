@@ -7,7 +7,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
 var mapSchema = mongoose.Schema({
-  locations : Array
+  locations: Array
 });
 
 module.exports = mongoose.model('Map', mapSchema);

@@ -18,10 +18,10 @@ var fs = require('fs');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-var isauthenticated = function(req,res,next){
-  if(req.session.user){
+var isauthenticated = function(req, res, next) {
+  if (req.session.user) {
     next();
-  }else {
+  } else {
     res.redirect('/');
   }
 };
@@ -29,40 +29,44 @@ var isauthenticated = function(req,res,next){
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'king_in_the_north',
   resave: false,
   saveUninitialized: true,
-  cookie: {secure: true}
+  cookie: {
+    secure: true
+  }
 }));
 app.use('/', routes);
 app.use('/users', users);
 
-app.use('/test',function(req,res,next){
+app.use('/test', function(req, res, next) {
   //var json = $.getJSON('/public/viz/in',function(json){
-    //var fs = require('fs');
-    var obj;
-    fs.readFile('public/viz/data.json', 'utf8', function (err, data) {
-      if (err) throw err;
-      obj = JSON.parse(data);
-      //console.log(obj);
-      var c=0;
-      for (var i=0;i<obj.objects.asasas.geometries.length;i++)
-      { c++;
+  //var fs = require('fs');
+  var obj;
+  fs.readFile('public/viz/data.json', 'utf8', function(err, data) {
+    if (err) throw err;
+    obj = JSON.parse(data);
+    //console.log(obj);
+    var c = 0;
+    for (var i = 0; i < obj.objects.asasas.geometries.length; i++) {
+      c++;
 
-        obj.objects.asasas.geometries[i].properties.color="#bfbfbf";
-        delete obj.objects.asasas.geometries[i].color;
+      obj.objects.asasas.geometries[i].properties.color = "#bfbfbf";
+      delete obj.objects.asasas.geometries[i].color;
 
 
-      }
-      console.log(c);
-      fs.writeFile('public/viz/data.json', JSON.stringify(obj) , 'utf-8',function(){
-        console.log("done");
-      });
+    }
+    console.log(c);
+    fs.writeFile('public/viz/data.json', JSON.stringify(obj), 'utf-8', function() {
+      console.log("done");
     });
+  });
 
 
 
@@ -70,9 +74,9 @@ app.use('/test',function(req,res,next){
 
 });
 
-app.use('/map',maps);
-app.use('/quiz',quiz);
-app.use('/challenge',challenge);
+app.use('/map', maps);
+app.use('/quiz', quiz);
+app.use('/challenge', challenge);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

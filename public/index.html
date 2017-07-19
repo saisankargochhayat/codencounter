@@ -3,29 +3,29 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Conquiz</title>
+  <title>Conquiz</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,400italic' rel='stylesheet' type='text/css'>
-        <!-- Theme CSS -->
-    <link href="css/grayscale.min.css" rel="stylesheet">
+  <!-- Custom Fonts -->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,400italic' rel='stylesheet' type='text/css'>
+  <!-- Theme CSS -->
+  <link href="css/grayscale.min.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
@@ -34,159 +34,162 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand page-scroll" href="#page-top">
-                    <i class="fa fa-play-circle"></i>  Conquiz
-                </a>
+  <!-- Navigation -->
+  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand page-scroll" href="#page-top">
+          <i class="fa fa-play-circle"></i> Conquiz
+        </a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+        <ul class="nav navbar-nav">
+          <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+          <li class="hidden">
+            <a href="#page-top"></a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+
+  <!-- Intro Header -->
+  <header class="intro">
+    <div class="intro-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <h1 class="lead">Let the War Begin</h1>
+            <blockquote>
+              <p class="lead" style="color:#ffffff"><b>Hello World .<br> Start your journey as a small Warlord and conquer unchartered lands<br> and show your skills. Access real world maps and mark your territory. Wage war for conquered regions and take them from other players.</br>Be the best among them !</b></p>
+            </blockquote>
+          </div>
+          <div class="col-md-3 col-md-offset-1" style="background-color:#fff">
+            <div>
+              <ul id="myTab" class="nav nav-tabs nav-justified">
+                <li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
+                <li class=""><a href="#signup" data-toggle="tab">Register</a></li>
+              </ul>
             </div>
+            <div class="modal-body">
+              <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="signin">
+                  <form class="form-horizontal" method="POST" action="users/signin">
+                    <fieldset>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                </ul>
-
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
-    <!-- Intro Header -->
-    <header class="intro">
-        <div class="intro-body">
-            <div class="container">
-              <div class="row">
-                  <div class="col-md-8">
-                    <h1 class="lead">Let the War Begin</h1>
-                    <blockquote><p class="lead" style="color:#ffffff"><b>Hello World .<br> Start your journey as a small Warlord and conquer unchartered lands<br> and show your skills. Access real world maps and mark your territory. Wage war for conquered regions and take them from other players.</br>Be the best among them !</b></p></blockquote>
-                  </div>
-                  <div class="col-md-3 col-md-offset-1" style="background-color:#fff">
-                    <div>
-                        <ul id="myTab" class="nav nav-tabs nav-justified">
-                          <li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
-                          <li class=""><a href="#signup" data-toggle="tab">Register</a></li>
-                        </ul>
-                    </div>
-                    <div class="modal-body">
-                      <div id="myTabContent" class="tab-content">
-                      <div class="tab-pane fade active in" id="signin">
-                          <form class="form-horizontal" method="POST" action="users/signin">
-                          <fieldset>
-
-                            <!-- Text input-->
-                            <div class="control-group">
-                              <label class="control-label" for="userid">Username:</label>
-                              <div class="controls">
-                                <input required="" id="userid" name="name" type="text" class="form-control" placeholder="Enter Username" class="input-medium" required="">
-                              </div>
-                            </div>
-
-                            <!-- Password input-->
-                            <div class="control-group">
-                              <label class="control-label" for="passwordinput">Password:</label>
-                              <div class="controls">
-                                <input required="" id="passwordinput" name="pass" class="form-control" type="password" placeholder="Enter Password" class="input-medium">
-                              </div>
-                            </div>
-
-                            <!-- Button -->
-                            <div class="control-group">
-                              <label class="control-label" for="signin"></label>
-                              <div class="controls">
-                                <button id="signin" name="signin" class="btn btn-success">Sign In</button>
-                              </div>
-                            </div>
-                          </fieldset>
-                          </form>
+                      <!-- Text input-->
+                      <div class="control-group">
+                        <label class="control-label" for="userid">Username:</label>
+                        <div class="controls">
+                          <input required="" id="userid" name="name" type="text" class="form-control" placeholder="Enter Username" class="input-medium" required="">
+                        </div>
                       </div>
 
-                      <div class="tab-pane fade" id="signup">
-                          <form class="form-horizontal" method="POST" action="users/signUp">
-                          <fieldset>
-
-                          <!-- Text input-->
-                          <div class="control-group">
-                            <label class="control-label" for="userid">Username:</label>
-                            <div class="controls">
-                              <input id="userid" name="name" class="form-control" type="text" placeholder="Enter Username" class="input-large" required>
-                            </div>
-                          </div>
-
-                          <!-- Password input-->
-                          <div class="control-group">
-                            <label class="control-label" for="password">Password:</label>
-                            <div class="controls">
-                              <input id="password" name="pass" class="form-control" type="password" placeholder="Enter Password" class="input-large" required>
-                            </div>
-                          </div>
-                          <br>
-
-                          <div class="control-group">
-                            <input name="color" type="hidden" id="color_value" value="86fffc"><button class="btn btn-info jscolor {valueElement: 'color_value'}">Pick a color</button>
-                          </div>
-
-                          <!-- Button -->
-                          <div class="control-group">
-                            <label class="control-label" for="confirmsignup"></label>
-                            <div class="controls">
-                              <button id="confirmsignup" name="confirmsignup" class="btn btn-success">Sign Up</button>
-                            </div>
-                          </div>
-                          </fieldset>
-                          </form>
+                      <!-- Password input-->
+                      <div class="control-group">
+                        <label class="control-label" for="passwordinput">Password:</label>
+                        <div class="controls">
+                          <input required="" id="passwordinput" name="pass" class="form-control" type="password" placeholder="Enter Password" class="input-medium">
+                        </div>
                       </div>
-                  </div>
+
+                      <!-- Button -->
+                      <div class="control-group">
+                        <label class="control-label" for="signin"></label>
+                        <div class="controls">
+                          <button id="signin" name="signin" class="btn btn-success">Sign In</button>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </form>
+                </div>
+
+                <div class="tab-pane fade" id="signup">
+                  <form class="form-horizontal" method="POST" action="users/signUp">
+                    <fieldset>
+
+                      <!-- Text input-->
+                      <div class="control-group">
+                        <label class="control-label" for="userid">Username:</label>
+                        <div class="controls">
+                          <input id="userid" name="name" class="form-control" type="text" placeholder="Enter Username" class="input-large" required>
+                        </div>
+                      </div>
+
+                      <!-- Password input-->
+                      <div class="control-group">
+                        <label class="control-label" for="password">Password:</label>
+                        <div class="controls">
+                          <input id="password" name="pass" class="form-control" type="password" placeholder="Enter Password" class="input-large" required>
+                        </div>
+                      </div>
+                      <br>
+
+                      <div class="control-group">
+                        <input name="color" type="hidden" id="color_value" value="86fffc">
+                        <button class="btn btn-info jscolor {valueElement: 'color_value'}">Pick a color</button>
+                      </div>
+
+                      <!-- Button -->
+                      <div class="control-group">
+                        <label class="control-label" for="confirmsignup"></label>
+                        <div class="controls">
+                          <button id="confirmsignup" name="confirmsignup" class="btn btn-success">Sign Up</button>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
-    </header>
+      </div>
+    </div>
+  </header>
 
-    <!-- jQuery -->
-    <script src="vendor/jquery/jquery.js"></script>
+  <!-- jQuery -->
+  <script src="vendor/jquery/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+  <!-- Plugin JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-    <!-- Theme JavaScript -->
-    <script src="js/grayscale.min.js"></script>
+  <!-- Theme JavaScript -->
+  <script src="js/grayscale.min.js"></script>
 
-    <script type="text/javascript" src="./js/colorbrewer.js"></script>
-    <script type="text/javascript">
+  <script type="text/javascript" src="./js/colorbrewer.js"></script>
+  <script type="text/javascript">
     function fbs_click() {
-        var twtTitle = document.title;
-        var twtUrl = location.href;
-        var maxLength = 140 - (twtUrl.length + 1);
-        if (twtTitle.length > maxLength) {
-            twtTitle = twtTitle.substr(0, (maxLength - 3)) + '...';
-        }
-        var twtLink = 'http://twitter.com/home?status=' + encodeURIComponent(twtTitle + ' ' + twtUrl + ' via @dhvanilp');
-        window.open(twtLink, 'height=450', 'width=550', top = ' + ($(window).height() / 2 - 275) + ', left = ' + ($(window).width() / 2 - 225) + ');
+      var twtTitle = document.title;
+      var twtUrl = location.href;
+      var maxLength = 140 - (twtUrl.length + 1);
+      if (twtTitle.length > maxLength) {
+        twtTitle = twtTitle.substr(0, (maxLength - 3)) + '...';
+      }
+      var twtLink = 'http://twitter.com/home?status=' + encodeURIComponent(twtTitle + ' ' + twtUrl + ' via @dhvanilp');
+      window.open(twtLink, 'height=450', 'width=550', top = ' + ($(window).height() / 2 - 275) + ', left = ' + ($(window).width() / 2 - 225) + ');
     }
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function(){
-    var randomColor = Math.floor(Math.random()*16777215).toString(16);
-    $("#color_value").attr("value",randomColor);
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+      $("#color_value").attr("value", randomColor);
 
 
     });
-    </script>
-    <script src="js/jscolor.js"></script>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://d3js.org/topojson.v1.min.js"></script>
-    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+  </script>
+  <script src="js/jscolor.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://d3js.org/topojson.v1.min.js"></script>
+  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
 
 

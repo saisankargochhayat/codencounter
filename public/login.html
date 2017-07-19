@@ -1,24 +1,29 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Login</title>
-  </head>
+
+<head>
+  <title>Login</title>
+</head>
+
 <body>
   <form method='post' action='/users/signin'>
     <div class="form-group">
-      <input type="text" required class="form-control" name = "name" placeholder="name"><br>
-      <input type="password" required class="form-control" name = "pass" placeholder="pass">
+      <input type="text" required class="form-control" name="name" placeholder="name">
+      <br>
+      <input type="password" required class="form-control" name="pass" placeholder="pass">
     </div>
     <button type="submit" class="btn btn-default">Login</button>
   </form>
 
   <form method='post' action='/users/signUp'>
     <div class="form-group">
-      <input type="text" required class="form-control" name = "name" placeholder="name"><br>
-      <input type="password" required class="form-control" name = "pass" placeholder="pass">
+      <input type="text" required class="form-control" name="name" placeholder="name">
+      <br>
+      <input type="password" required class="form-control" name="pass" placeholder="pass">
     </div>
     <button type="submit" class="btn btn-default">Register</button>
   </form>
 </body>
 <script src="vendor/jquery/jquery.js"></script>
+
 </html>

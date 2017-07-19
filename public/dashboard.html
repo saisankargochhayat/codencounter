@@ -3,32 +3,32 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Conquiz</title>
+  <title>Conquiz</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,400italic' rel='stylesheet' type='text/css'>
-    <link href="./css/choropleth.css" rel="stylesheet">
-    <link href="./css/colorbrewer.css" rel="stylesheet">
+  <!-- Custom Fonts -->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,400italic' rel='stylesheet' type='text/css'>
+  <link href="./css/choropleth.css" rel="stylesheet">
+  <link href="./css/colorbrewer.css" rel="stylesheet">
 
-    <!-- Theme CSS -->
-    <link href="css/grayscale.min.css" rel="stylesheet">
+  <!-- Theme CSS -->
+  <link href="css/grayscale.min.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
@@ -37,250 +37,251 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand page-scroll" href="#page-top">
-                    <i class="fa fa-play-circle"></i>  Conquiz
+  <!-- Navigation -->
+  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand page-scroll" href="#page-top">
+          <i class="fa fa-play-circle"></i> Conquiz
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+        <ul class="nav navbar-nav">
+          <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+          <li class="hidden">
+            <a href="#page-top"></a>
+          </li>
+          <li>
+            <div class="btn-group" style="margin-top:5px" id="user">
+              <!-- <button type="button" class="btn btn-info" id="user">Allo User</button> -->
+              <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="logout" onmouseover="this.style.color='#B62D7D'" href="/users/signout">Logout</a></li>
+              </ul>
             </div>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                      <div class="btn-group" style="margin-top:5px" id="user">
-                      <!-- <button type="button" class="btn btn-info" id="user">Allo User</button> -->
-                      <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li><a class="logout" onmouseover="this.style.color='#B62D7D'" href="/users/signout">Logout</a></li>
-                      </ul>
-                      </div>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+  <!-- Intro Header -->
+  <header class="intro">
+    <div class="intro-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="portfolio-content">
 
-    <!-- Intro Header -->
-    <header class="intro">
-        <div class="intro-body">
-            <div class="container">
-              <div class="row">
-                  <div class="col-md-9">
-                      <div class="portfolio-content">
-
-                        <div style="height: 800px; padding-top: 100px" class="portfolio-content-text">
-                            <div style="margin-left: -70px" class="col-md-10">
-                                <div id="loader_container1"></div>
-                                <div class="inline" style="margin-left: -100px" id="india1"></div>
-                            </div>
-                        </div>
-
-                      </div>
-                  </div>
-                  <div class="portfolio-content col-md-3" style="margin-top:100px">
-
-                    <div class="panel panel-default">
-                      <!-- Default panel contents -->
-                      <div class="panel-heading">Leaderboard</div>
-                      <table class="table table-striped" style="color:black;text-align:left">
-                        <thead>
-                          <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Bounty</th>
-                          </tr>
-                        </thead>
-                        <tbody id="leaderboard">
-                        </tbody>
-                      </table>
-                    </div>
-                    <div class="panel panel-default">
-                      <!-- Default panel contents -->
-                      <div class="panel-heading">My Rank:</div>
-                      <ul class="list-group" style="color:black" id="myrank">
-                      </ul>
-                    </div>
-                    <div class="panel panel-default">
-                      <!-- Default panel contents -->
-                      <div class="panel-heading">Defend Your Region:</div>
-                      <ul class="list-group" style="color:black" id="challenge">
-                      </ul>
-                    </div>
+              <div style="height: 800px; padding-top: 100px" class="portfolio-content-text">
+                <div style="margin-left: -70px" class="col-md-10">
+                  <div id="loader_container1"></div>
+                  <div class="inline" style="margin-left: -100px" id="india1"></div>
+                </div>
               </div>
-            </div>
-        </div>
-    </header>
-    <center>
-      <div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Notification</h4>
+            </div>
+          </div>
+          <div class="portfolio-content col-md-3" style="margin-top:100px">
+
+            <div class="panel panel-default">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Leaderboard</div>
+              <table class="table table-striped" style="color:black;text-align:left">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Bounty</th>
+                  </tr>
+                </thead>
+                <tbody id="leaderboard">
+                </tbody>
+              </table>
+            </div>
+            <div class="panel panel-default">
+              <!-- Default panel contents -->
+              <div class="panel-heading">My Rank:</div>
+              <ul class="list-group" style="color:black" id="myrank">
+              </ul>
+            </div>
+            <div class="panel panel-default">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Defend Your Region:</div>
+              <ul class="list-group" style="color:black" id="challenge">
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="modal-body">
-          <p id="msg">.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+  </header>
+  <center>
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Notification</h4>
+          </div>
+          <div class="modal-body">
+            <p id="msg">.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </center>
-    <!-- jQuery -->
-    <script src="vendor/jquery/jquery.js"></script>
+  <!-- jQuery -->
+  <script src="vendor/jquery/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+  <!-- Plugin JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-    <!-- Theme JavaScript -->
-    <script src="js/grayscale.min.js"></script>
+  <!-- Theme JavaScript -->
+  <script src="js/grayscale.min.js"></script>
 
-    <script type="text/javascript" src="./js/colorbrewer.js"></script>
-    <script type="text/javascript">
+  <script type="text/javascript" src="./js/colorbrewer.js"></script>
+  <script type="text/javascript">
     function fbs_click() {
-        var twtTitle = document.title;
-        var twtUrl = location.href;
-        var maxLength = 140 - (twtUrl.length + 1);
-        if (twtTitle.length > maxLength) {
-            twtTitle = twtTitle.substr(0, (maxLength - 3)) + '...';
-        }
-        var twtLink = 'http://twitter.com/home?status=' + encodeURIComponent(twtTitle + ' ' + twtUrl + ' via @dhvanilp');
-        window.open(twtLink, 'height=450', 'width=550', top = ' + ($(window).height() / 2 - 275) + ', left = ' + ($(window).width() / 2 - 225) + ');
+      var twtTitle = document.title;
+      var twtUrl = location.href;
+      var maxLength = 140 - (twtUrl.length + 1);
+      if (twtTitle.length > maxLength) {
+        twtTitle = twtTitle.substr(0, (maxLength - 3)) + '...';
+      }
+      var twtLink = 'http://twitter.com/home?status=' + encodeURIComponent(twtTitle + ' ' + twtUrl + ' via @dhvanilp');
+      window.open(twtLink, 'height=450', 'width=550', top = ' + ($(window).height() / 2 - 275) + ', left = ' + ($(window).width() / 2 - 225) + ');
     }
-    </script>
+  </script>
 
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://d3js.org/topojson.v1.min.js"></script>
-    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-    <script type="text/javascript">
-    $.urlParam = function(name){
-    	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-      if(results)
-    	return results[1];
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://d3js.org/topojson.v1.min.js"></script>
+  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+  <script type="text/javascript">
+    $.urlParam = function(name) {
+      var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      if (results)
+        return results[1];
       else {
         return 0;
       }
     }
-    $(document).ready(function(){
+    $(document).ready(function() {
       var msg = $.urlParam('msg');
-      if(msg){
+      if (msg) {
         $('#msg').html(decodeURI(msg));
         $('#myModal').modal('show');
       }
       $.ajax({
-        url:"/users/leaderboards",
-        method:"GET",
-        success:function(data){
+        url: "/users/leaderboards",
+        method: "GET",
+        success: function(data) {
           console.log(data);
-          for(var i=0;i<data.length;i++){
-            $('#leaderboard').append($('<tr><td>'+(i+1)+'</td><td>'+ data[i].username+'</td><td>'+ data[i].score+'</td></tr>'));
+          for (var i = 0; i < data.length; i++) {
+            $('#leaderboard').append($('<tr><td>' + (i + 1) + '</td><td>' + data[i].username + '</td><td>' + data[i].score + '</td></tr>'));
           }
         }
       })
 
       $.ajax({
-        url:"/users/getrank",
-        method:"GET",
-        success:function(data){
+        url: "/users/getrank",
+        method: "GET",
+        success: function(data) {
           console.log(data);
-            $('#myrank').append($('<li class="list-group-item">'+data.rank+'</li>'));
+          $('#myrank').append($('<li class="list-group-item">' + data.rank + '</li>'));
         }
       })
 
       $.ajax({
-        url:"/users/getUsername",
-        method:"POST",
-        success:function(data){
+        url: "/users/getUsername",
+        method: "POST",
+        success: function(data) {
           console.log(data);
-            $('#user').prepend($('<button type="button" class="btn btn-info" id="user">Allo '+data+'</button>'));
+          $('#user').prepend($('<button type="button" class="btn btn-info" id="user">Allo ' + data + '</button>'));
         }
       })
 
       $.ajax({
-        url:"/challenge/getchallenges",
-        method:"POST",
-        success:function(dat){
+        url: "/challenge/getchallenges",
+        method: "POST",
+        success: function(dat) {
           console.log(dat);
-          for(var i=0;i<dat.length;i++){
-            $('#challenge').append($('<li class="list-group-item">'+dat[i].challenger.name+' attacked at Region: '+dat[i].locationid+'<br><a href="/challenge/acceptchallenge/'+dat[i]._id+'" class="btn btn-danger" role="button">Defend Now</a></li>'));
+          for (var i = 0; i < dat.length; i++) {
+            $('#challenge').append($('<li class="list-group-item">' + dat[i].challenger.name + ' attacked at Region: ' + dat[i].locationid + '<br><a href="/challenge/acceptchallenge/' + dat[i]._id +
+              '" class="btn btn-danger" role="button">Defend Now</a></li>'));
           }
         }
       })
     });
-
-    </script>
-    <script type="text/javascript">
+  </script>
+  <script type="text/javascript">
     var challengesmapping = {};
-    var loadmap = function(){
+    var loadmap = function() {
       console.log(mapjson);
+
       function loader(config) {
         console.log();
-          return function() {
-              // config.width & config.height
-              var radius = Math.min(800, 500) / 2;
-              var tau = 2 * Math.PI;
+        return function() {
+          // config.width & config.height
+          var radius = Math.min(800, 500) / 2;
+          var tau = 2 * Math.PI;
 
-              var arc = d3.svg.arc()
-                  .innerRadius(radius * 0.2)
-                  .outerRadius(radius * 0.4)
-                  .startAngle(0);
+          var arc = d3.svg.arc()
+            .innerRadius(radius * 0.2)
+            .outerRadius(radius * 0.4)
+            .startAngle(0);
 
-              var svg = d3.select(config).append("svg")
-                  .attr("id", "loader")
-                  .attr("width", 800)
-                  .attr("height", 500)
-                  .append("g")
-                  .attr("transform", "translate(" + 800 / 2 + "," + 500 / 2 + ")")
+          var svg = d3.select(config).append("svg")
+            .attr("id", "loader")
+            .attr("width", 800)
+            .attr("height", 500)
+            .append("g")
+            .attr("transform", "translate(" + 800 / 2 + "," + 500 / 2 + ")")
 
-              var background = svg.append("path")
-                  .datum({
-                      endAngle: 0.33 * tau
-                  })
-                  .style("fill", "#4D4D4D")
-                  .attr("d", arc)
-                  .call(spin, 1500)
+          var background = svg.append("path")
+            .datum({
+              endAngle: 0.33 * tau
+            })
+            .style("fill", "#4D4D4D")
+            .attr("d", arc)
+            .call(spin, 1500)
 
-              function spin(selection, duration) {
-                  selection.transition()
-                      .ease("linear")
-                      .duration(duration)
-                      .attrTween("transform", function() {
-                          return d3.interpolateString("rotate(0)", "rotate(360)");
-                      });
+          function spin(selection, duration) {
+            selection.transition()
+              .ease("linear")
+              .duration(duration)
+              .attrTween("transform", function() {
+                return d3.interpolateString("rotate(0)", "rotate(360)");
+              });
 
-                  setTimeout(function() {
-                      spin(selection, duration);
-                  }, duration);
-              }
+            setTimeout(function() {
+              spin(selection, duration);
+            }, duration);
+          }
 
-              function transitionFunction(path) {
-                  path.transition()
-                      .duration(7500)
-                      .attrTween("stroke-dasharray", tweenDash)
-                      .each("end", function() {
-                          d3.select(this).call(transition);
-                      });
-              }
+          function transitionFunction(path) {
+            path.transition()
+              .duration(7500)
+              .attrTween("stroke-dasharray", tweenDash)
+              .each("end", function() {
+                d3.select(this).call(transition);
+              });
+          }
 
-          };
+        };
       }
 
       var myLoader = loader("#loader_container1")
@@ -290,131 +291,130 @@
 
       d3.json("./viz/data.json", function(error, map) {
 
-      var districts = topojson.feature(map, map.objects.asasas).features,
+        var districts = topojson.feature(map, map.objects.asasas).features,
           neighbors = topojson.neighbors(map.objects.asasas.geometries);
 
-          d3.select("body").select('#loader_container1').remove();
-          d3.select("body").select('#loader_container2').remove();
-          d3.select("body").select('#loader_container3').remove();
-          d3.select("body").select('#loader_container4').remove();
-          d3.select("body").select('#loader_container5').remove();
-          d3.select("body").select('#loader_container6').remove();
-          d3.select("body").select('#loader_container7').remove();
+        d3.select("body").select('#loader_container1').remove();
+        d3.select("body").select('#loader_container2').remove();
+        d3.select("body").select('#loader_container3').remove();
+        d3.select("body").select('#loader_container4').remove();
+        d3.select("body").select('#loader_container5').remove();
+        d3.select("body").select('#loader_container6').remove();
+        d3.select("body").select('#loader_container7').remove();
 
 
-          function plotty(id, parameter, parameterName, color) {
+        function plotty(id, parameter, parameterName, color) {
 
-              $("#removeIt").hide()
+          $("#removeIt").hide()
 
-              var tip = d3.tip()
-                  .attr('class', 'd3-tip')
-                  .offset([-10, 0])
-                  .html(function(d) {
-                      var conquered = mapjson.locations[d.properties.id].conquered;
-                      if(!conquered){
-                        return "<span style='color:white'>" + d.properties.DISTRICT + "<br><br>" + parameterName + ": " + eval(parameter) +"<br><br>"+
-                        " Unconquered Area</span>";
-                      }else{
-                        return "<span style='color:white'>" + d.properties.DISTRICT + "<br><br>" + parameterName + ": " + eval(parameter) +"<br><br>"+
-                        " Conquered By : " +  mapjson.locations[d.properties.id].conqueredBy.name+"</span>";
-                      }
+          var tip = d3.tip()
+            .attr('class', 'd3-tip')
+            .offset([-10, 0])
+            .html(function(d) {
+              var conquered = mapjson.locations[d.properties.id].conquered;
+              if (!conquered) {
+                return "<span style='color:white'>" + d.properties.DISTRICT + "<br><br>" + parameterName + ": " + eval(parameter) + "<br><br>" +
+                  " Unconquered Area</span>";
+              } else {
+                return "<span style='color:white'>" + d.properties.DISTRICT + "<br><br>" + parameterName + ": " + eval(parameter) + "<br><br>" +
+                  " Conquered By : " + mapjson.locations[d.properties.id].conqueredBy.name + "</span>";
+              }
 
-                  })
+            })
 
-              var width = 1000,
-                  height = 800;
+          var width = 1000,
+            height = 800;
 
-              var projection = d3.geo.albers()
-                  .scale(1500)
-                  .translate([(width / 2) - 40, height / 2])
-                  .rotate([-80.0200, 0])
-                  .center([0, 22.1800])
+          var projection = d3.geo.albers()
+            .scale(1500)
+            .translate([(width / 2) - 40, height / 2])
+            .rotate([-80.0200, 0])
+            .center([0, 22.1800])
 
-              var svg = d3.select("body").select(id).append("svg")
-                  .attr("width", width)
-                  .attr("height", height);
+          var svg = d3.select("body").select(id).append("svg")
+            .attr("width", width)
+            .attr("height", height);
 
-              var g = svg.append("g");
+          var g = svg.append("g");
 
-              var path = d3.geo.path()
-                  .projection(projection);
+          var path = d3.geo.path()
+            .projection(projection);
 
-              var maximum = d3.max(topojson.feature(map, map.objects.asasas).features, function(d) {
-                  if (eval(parameter) != null) {
-                      return eval(parameter)
+          var maximum = d3.max(topojson.feature(map, map.objects.asasas).features, function(d) {
+            if (eval(parameter) != null) {
+              return eval(parameter)
+            }
+          })
+
+          var minimum = d3.min(topojson.feature(map, map.objects.asasas).features, function(d) {
+            if (eval(parameter) != null) {
+              return eval(parameter)
+            }
+          })
+
+          var colorBrewerQuantize = d3.scale.quantize()
+            .domain([minimum, maximum])
+            .range(eval(color));
+
+          svg.call(tip);
+
+          svg.selectAll(".subunit")
+            .data(topojson.feature(map, map.objects.asasas).features)
+            .enter().append("path")
+            .attr("class", "subunit")
+            .attr("id", function(d) {
+              return d.properties.DISTRICT
+            })
+            .attr("d", path)
+            .attr("fill", function(d) {
+              if (mapjson.locations[d.properties.id].conquered) {
+                return mapjson.locations[d.properties.id].conqueredBy.color;
+              } else {
+                return "#D3D3D3";
+              }
+
+            })
+            .on("mouseover", function(d) {
+              tip.show(d)
+              d3.select(this)
+                .attr("fill", "orange")
+            })
+            .on("mouseout", function(d) {
+              tip.hide(d)
+              d3.select(this)
+                .attr("fill", function(d) {
+                  if (mapjson.locations[d.properties.id].conquered) {
+                    return mapjson.locations[d.properties.id].conqueredBy.color;
+                  } else {
+                    return "#D3D3D3";
                   }
-              })
+                })
+            })
+            .on("click", function(d) {
+              if (mapjson.locations[d.properties.id].conquered) {
+                window.location.href = "/challenge/trynewchallenge/" + d.properties.id;
+              } else {
+                window.location.href = "/challenge/tryunconquredarea/" + d.properties.id;
+              }
+            })
+        }
 
-              var minimum = d3.min(topojson.feature(map, map.objects.asasas).features, function(d) {
-                  if (eval(parameter) != null) {
-                      return eval(parameter)
-                  }
-              })
-
-              var colorBrewerQuantize = d3.scale.quantize()
-                  .domain([minimum, maximum])
-                  .range(eval(color));
-
-              svg.call(tip);
-
-              svg.selectAll(".subunit")
-                  .data(topojson.feature(map, map.objects.asasas).features)
-                  .enter().append("path")
-                  .attr("class", "subunit")
-                  .attr("id", function(d) {
-                      return d.properties.DISTRICT
-                  })
-                  .attr("d", path)
-                  .attr("fill", function(d) {
-                    if( mapjson.locations[d.properties.id].conquered){
-                      return mapjson.locations[d.properties.id].conqueredBy.color;
-                    }else{
-                      return "#D3D3D3";
-                    }
-
-                  })
-                  .on("mouseover", function(d) {
-                      tip.show(d)
-                      d3.select(this)
-                          .attr("fill", "orange")
-                  })
-                  .on("mouseout", function(d) {
-                      tip.hide(d)
-                      d3.select(this)
-                          .attr("fill", function(d) {
-                            if( mapjson.locations[d.properties.id].conquered){
-                              return mapjson.locations[d.properties.id].conqueredBy.color;
-                            }else{
-                              return "#D3D3D3";
-                            }
-                          })
-                  })
-                  .on("click",function(d){
-                    if( mapjson.locations[d.properties.id].conquered){
-                      window.location.href="/challenge/trynewchallenge/"+d.properties.id;
-                    }
-                    else{
-                      window.location.href="/challenge/tryunconquredarea/"+d.properties.id;
-                    }
-                  })
-          }
-
-          plotty("#india1", "d.properties.id", "Id is", "colorbrewer.RdBu[9]")
+        plotty("#india1", "d.properties.id", "Id is", "colorbrewer.RdBu[9]")
 
       });
     }
-    </script>
-    <script type="text/javascript">
-      var mapjson;
-      $.ajax({
-        url : '/map/getmap',
-        method : 'GET',
-        success : function(data){
-          mapjson = JSON.parse(JSON.stringify(data));
-          loadmap();
-        }
-      })
-    </script>
+  </script>
+  <script type="text/javascript">
+    var mapjson;
+    $.ajax({
+      url: '/map/getmap',
+      method: 'GET',
+      success: function(data) {
+        mapjson = JSON.parse(JSON.stringify(data));
+        loadmap();
+      }
+    })
+  </script>
 </body>
 
 </html>
