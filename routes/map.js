@@ -5,6 +5,7 @@ var User = require('../models/users');
 var bcrypt = require('bcryptjs');
 var mongoose = require('mongoose');
 var Challenge = require('../models/challenges');
+
 var isauthenticated = function(req,res,next){
   if(req.session.user){
     next();
@@ -12,6 +13,7 @@ var isauthenticated = function(req,res,next){
     res.redirect('/');
   }
 };
+
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
@@ -19,6 +21,7 @@ function getRandomArbitrary(min, max) {
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
 var getrandomid = function(){
   var promise = new Promise(function(resolve,reject){
     var id = getRandomInt(minid,maxid);
@@ -35,16 +38,17 @@ var getrandomid = function(){
   });
   return promise;
 }
+
 /* GET users listing. */
 router.get('/getmap',function(req,res,next){
   Map.findOne({},function(err,map){
     if(err){
-      console.log(err);
     }else{
       res.send(map);
     }
   });
 });
+
 router.get('/createnewmap',function(req,res,next){
   var map = new Map({
     _id : mongoose.Types.ObjectId(1),
@@ -60,18 +64,17 @@ router.get('/createnewmap',function(req,res,next){
   }
   map.save(function(err,map){
     if(err){
-      console.log(err);
     }else{
       res.send(map.id)
     }
   });
 });
+
 router.get('/changeconquer',function(req,res,next){
   var locationid = req.session.locationid;
   Map.findOne({},function(err,map){
     var possible = true;
     if(err){
-      console.log(err);
     }else{
       var obj = {};
       obj.id = locationid;
@@ -82,22 +85,17 @@ router.get('/changeconquer',function(req,res,next){
       obj.conquredby.name = req.session.newuser.name;
       var locationmark1 = 'locations.'+locationid+'.conquered';
       //locationmark1 = "'"+locationmark1+"'";
-      console.log(locationmark1);
       var locationmark2 = 'locations.'+locationid+'.conqueredBy';
       ///////////////////////////////////////////////////////////
       var updating = {
         [locationmark1] : true,
         [locationmark2] : obj.conquredby
       };
-      console.log(updating);
       Map.update({_id : mongoose.Types.ObjectId(map._id)},{$set :updating},function(err,data){
         if(err){
-          console.log(err);
         }else{
-          console.log(data);
           Challenge.remove({_id : mongoose.Types.ObjectId(req.session.challengeid)},function(err){
             if(err){
-              console.log(err);
               res.send(err);
             }else{
               res.redirect('/users/updatescoreother/'+100);
@@ -108,12 +106,13 @@ router.get('/changeconquer',function(req,res,next){
     }
   });
 });
+
 router.get('/addnewconquer/:locationid',function(req,res,next){
   var locationid = req.params.locationid;
   Map.findOne({},function(err,map){
     var possible = true;
     if(err){
-      console.log(err);
+      res.send(err);
     }
     if(possible){
       var obj = {};
@@ -125,19 +124,16 @@ router.get('/addnewconquer/:locationid',function(req,res,next){
       obj.conquredby.name = req.session.user.name;
       var locationmark1 = 'locations.'+locationid+'.conquered';
       //locationmark1 = "'"+locationmark1+"'";
-      console.log(locationmark1);
       var locationmark2 = 'locations.'+locationid+'.conqueredBy';
       ///////////////////////////////////////////////////////////
       var updating = {
         [locationmark1] : true,
         [locationmark2] : obj.conquredby
       };
-      console.log(updating);
       Map.update({_id : mongoose.Types.ObjectId(map._id)},{$set :updating},function(err,data){
         if(err){
-          console.log(err);
+          res.send(err);
         }else{
-          console.log(data);
           res.redirect('/users/updatescore/'+50);
         }
       });
@@ -146,6 +142,7 @@ router.get('/addnewconquer/:locationid',function(req,res,next){
     }
   });
 });
+
 router.get('/getconqueredlocations',function(req,res,next){
   User.findById(req.session.user.id,function(err,user){
     if(err){
@@ -153,7 +150,6 @@ router.get('/getconqueredlocations',function(req,res,next){
       res.send(err);
     }else{
       if(user){
-        console.log(user);
         res.status=200;
         res.send(user.conquered);
       }else{
@@ -162,6 +158,7 @@ router.get('/getconqueredlocations',function(req,res,next){
     }
   });
 });
+
 router.get('/getbasearea',function(req,res,next){
   User.findById(req.session.user.id,function(err,user){
     if(err){
@@ -169,7 +166,6 @@ router.get('/getbasearea',function(req,res,next){
       res.send(err);
     }else{
       if(user){
-        console.log(user);
         res.status=200;
         res.send(user.baseArea);
       }else{
@@ -178,5 +174,5 @@ router.get('/getbasearea',function(req,res,next){
     }
   });
 });
-router.post('/')
+
 module.exports = router;
