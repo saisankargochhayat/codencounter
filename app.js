@@ -13,6 +13,7 @@ var maps = require('./routes/map');
 var quiz = require('./routes/quiz')
 var session = require('express-session');
 var challenge = require('./routes/challenge');
+var Map = require('./models/map');
 var app = express();
 var fs = require('fs');
 // view engine setup
@@ -36,11 +37,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'king_in_the_north',
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    secure: true
-  }
+  resave: true,
+  saveUninitialized: true
 }));
 app.use('/', routes);
 app.use('/users', users);
@@ -67,11 +65,6 @@ app.use('/test', function(req, res, next) {
       console.log("done");
     });
   });
-
-
-
-
-
 });
 
 app.use('/map', maps);
@@ -108,5 +101,28 @@ app.use(function(err, req, res, next) {
   });
 });
 
-
+//Check if a map already exists
+Map.findOne({},function(err,old_map) {
+  if(!old_map){
+    var map = new Map({
+      _id: mongoose.Types.ObjectId(1),
+      locations: new Array()
+    });
+    for (var i = 0; i < 596; i++) {
+      map.locations[i] = {
+        color: "#0000ff",
+        level: 1,
+        conquered: false,
+        conqueredBy: {}
+      }
+    }
+    map.save(function(err, map) {
+      if (err) {} else {
+        console.log("Created new Map");
+      }
+    });
+  } else {
+    console.log("Map Already Created");
+  }
+})
 module.exports = app;

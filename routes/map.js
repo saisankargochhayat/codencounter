@@ -124,6 +124,7 @@ router.get('/addnewconquer/:locationid', function(req, res, next) {
       var obj = {};
       obj.id = locationid;
       obj.conquredby = {};
+      console.log(req.session);
       //Change it
       obj.conquredby.id = req.session.user.id;
       obj.conquredby.color = req.session.user.color;
