@@ -1,4 +1,4 @@
-## Codencounter
+## ConQuiz
 An educational game application to motivate students to study. Based on the concept of
 gamification of education.
 Users can capture locations in a virtual map by passing quizzes and challenging
